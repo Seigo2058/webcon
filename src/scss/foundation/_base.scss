@@ -1,0 +1,17 @@
+@use '../variable' as v;
+
+body {
+  font-family: var(--f1);
+  font-size: v.rem(16);
+  line-height: normal;
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+h1, h2 {
+  font-family: var(--f2);
+}
+
+a {
+  color: inherit;
+}

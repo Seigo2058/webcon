@@ -1,0 +1,47 @@
+{
+  "name": "omiya",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "npm run build",
+    "build": "node ./node_modules/sass/sass.js src/scss:public/css --style=expanded --no-source-map",
+    "dev": "node ./node_modules/sass/sass.js --watch src/scss:public/css --style=expanded",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawosizuku/omiya.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tawosizuku/omiya/issues"
+  },
+  "homepage": "https://github.com/tawosizuku/omiya#readme",
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "sass": "^1.94.2"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "braces": "^3.0.3",
+    "chokidar": "^4.0.3",
+    "detect-libc": "^1.0.3",
+    "fill-range": "^7.1.1",
+    "immutable": "^5.1.4",
+    "is-extglob": "^2.1.1",
+    "is-glob": "^4.0.3",
+    "is-number": "^7.0.0",
+    "micromatch": "^4.0.8",
+    "node-addon-api": "^7.1.1",
+    "picomatch": "^2.3.1",
+    "readdirp": "^4.1.2",
+    "source-map-js": "^1.2.1",
+    "to-regex-range": "^5.0.1"
+  },
+  "type": "commonjs"
+}

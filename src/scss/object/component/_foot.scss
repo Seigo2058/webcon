@@ -1,0 +1,68 @@
+@use "../../variable/" as v;
+
+.c-foot {
+  color: var(--c-wh);
+  &Inner {
+    background-color: var(--c-footBg);
+    padding: 53px 40px 77px;
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+
+    &_left {
+      &_logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 26px;
+      }
+      &_txt {
+        margin-top: 43px;
+        margin-left: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    &_right {
+      display: flex;
+      justify-content: space-between;
+      gap: 70px;
+      margin-top: 48px;
+
+      & .--mt {
+        margin-top: 37px;
+      }
+
+      &_ttl {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      li {
+        font-size: v.rem(16);
+        font-weight: 400;
+        line-height: 32px;
+      }
+
+      &_flex {
+        a {
+          display: flex;
+          justify-content: center;
+          gap: 21px;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  &Copy {
+    text-align: center;
+    margin: 32px 0 11px;
+    font-size: v.rem(13);
+    font-weight: 400;
+    line-height: 26px;
+    color: var(--c-text);
+  }
+}

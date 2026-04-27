@@ -1,0 +1,229 @@
+@use '../../variable/' as v;
+
+.company {
+
+  .p-info {
+
+    &Flex {
+      display: flex;
+
+      gap: 123px;
+
+      @include v.mp(s) {
+        gap: 15px;
+      }
+
+      &:not(:first-child) {
+        margin-top: 38px;
+      }
+
+      dt {
+        width: 80px;
+        font-weight: 500;
+        line-height: normal;
+        white-space: nowrap;
+      }
+
+      dd {
+        line-height: normal;
+      }
+    }
+  }
+
+  .p-office {
+
+    &Inner {
+      &:nth-child(even) {
+        background-color: var(--c-bgTb);
+      }
+
+      &_right {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        @include v.mp(ts) {
+          flex-direction: column;
+        }
+      }
+
+      dl {
+        display: flex;
+        gap: calc(180 / 1016 * 100%);
+        padding: 16px 37px;
+
+        @include v.mp(s) {
+          gap: 38px;
+        }
+      }
+
+      dt {
+        width: 80px;
+        white-space: nowrap;
+      }
+
+      dd {
+        text-align: left;
+
+        &:nth-of-type(1) {
+          width: 328px;
+
+          @include v.mp(ts) {
+            width: 100%;
+          }
+        }
+
+        &:nth-of-type(2) {
+          width: 146px;
+
+          @include v.mp(ts) {
+            width: 100%;
+          }
+        }
+      }
+
+    }
+  }
+
+  .p-history {
+
+    &Inner {
+      display: flex;
+      gap: 24px;
+
+      @include v.mp(s) {
+        gap: 8px;
+      }
+
+      &_left {
+        p {
+          color: var(--c-text-sub);
+          font-size: v.rem(32);
+          font-weight: 700;
+          line-height: 30px;
+
+          white-space: nowrap;
+        }
+      }
+
+      &_right {
+        list-style: disc !important;
+        padding-left: 80px;
+        margin: 0;
+
+        @include v.mp(s) {
+          padding-left: 15px;
+        }
+
+        li {
+          position: relative;
+          padding-left: 43px;
+          padding-bottom: 40px;
+          color: var(--c-text-sub);
+          line-height: 30px;
+
+          @include v.mp(s) {
+            padding-left: 5px;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 14px;
+            left: -14px;
+            height: 100%;
+            width: 1px;
+            background: repeating-linear-gradient(to bottom,
+                var(--c-text-sub) 0,
+                var(--c-text-sub) 4px,
+                transparent 4px,
+                transparent 8px);
+
+            @include v.mp(s) {
+              left: -16px;
+            }
+          }
+        }
+
+        .--last {
+          padding-bottom: 0;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .p-env {
+
+    &Ttl {
+      font-size: v.rem(24);
+      font-weight: 500;
+      line-height: normal;
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+          position: relative;
+          padding-left: 16px;
+          line-height: 1.8;
+
+          &::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1em;
+            line-height: inherit;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    p {
+      margin-left: 16px;
+    }
+
+    &Policy {
+
+      &Inner {
+        margin-top: 32px;
+
+        ol {
+          padding-left: 40px !important;
+
+          >li:nth-child(n + 2) {
+            margin-top: 16px;
+          }
+
+          ul {
+            list-style: disc;
+            padding-left: 20px;
+
+            li {
+              padding-left: 10px;
+
+              &::marker {
+                font-size: 0.7em;
+              }
+            }
+          }
+        }
+      }
+
+      &_date {
+        display: flex;
+        justify-content: flex-end;
+        text-align: right;
+      }
+    }
+
+
+  }
+
+
+}

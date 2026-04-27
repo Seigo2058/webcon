@@ -1,0 +1,369 @@
+@use "../../variable/" as v;
+
+.about {
+  .p-philosophy {
+    &Inner {
+      display: flex;
+      gap: 107px;
+      @include v.mp(ts) {
+        flex-direction: column;
+      }
+      &_left {
+        width: 50%;
+        @include v.mp(ts) {
+          width: 100%;
+        }
+        h2 {
+          color: var(--c-text);
+          font-size: v.rem(48);
+          font-weight: 700;
+          line-height: normal;
+          @include v.mp(s) {
+            font-size: v.rem(36);
+          }
+        }
+        p {
+          margin-top: 52px;
+          color: var(--c-text);
+          font-size: v.rem(16);
+          font-weight: 500;
+          line-height: 50px;
+          @include v.mp(s) {
+            margin-top: 30px;
+            line-height: 36px;
+            font-weight: 400;
+          }
+        }
+      }
+
+      &_right {
+        display: flex;
+        gap: calc(21 / 612 * 100%);
+        width: 50%;
+        @include v.mp(ts) {
+          width: 100%;
+          justify-content: center;
+          display: none;
+        }
+        &_img {
+          border-radius: 10px;
+          &.--01 {
+            width: calc(267 / 638 * 100%);
+            height: auto;
+          }
+          &.--02 {
+            margin-top: 127px;
+            width: calc(324 / 638 * 100%);
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .p-message {
+    @include v.mp(ts) {
+    }
+    &Inner {
+      width: 100%;
+      display: flex;
+      @include v.mp(ts) {
+        flex-direction: column;
+        gap: 20px !important;
+      }
+      gap: calc(160 / 1272 * 100%);
+      &_left {
+        width: calc(450 / 1272 * 100%);
+        @include v.mp(ts) {
+          width: 100%;
+          min-width: none;
+          max-width: 450px;
+        }
+
+        &_img {
+          width: 100%;
+          height: auto;
+          border-radius: 10px;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+      &_right {
+        width: calc(663 / 1272 * 100%);
+        @include v.mp(ts) {
+          width: 100%;
+        }
+        h2 {
+          color: var(--c-text);
+          font-size: v.rem(40);
+          font-weight: 700;
+          line-height: 40px;
+          @include v.mp(s) {
+            font-size: v.rem(36);
+          }
+        }
+        &_txt {
+          color: var(--c-text);
+          font-size: v.rem(16);
+          font-weight: 500;
+          line-height: 30px;
+          margin-top: 33px;
+          @include v.mp(s) {
+            font-weight: 400;
+          }
+        }
+        &_post {
+          margin-top: 45px;
+          font-size: v.rem(16);
+          font-weight: 500;
+          line-height: 19px;
+          @include v.mp(ts) {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+        &_name {
+          margin-top: 33px;
+          color: var(--c-text);
+          font-size: v.rem(24);
+          font-weight: 700;
+          line-height: 30px;
+          @include v.mp(ts) {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+
+  .p-strength {
+    padding: 61px 0;
+    background-color: var(--c-base);
+    border-radius: 50px 50px 0 0;
+    .l-wrap-1277 {
+      padding-inline: 20px !important;
+    }
+
+    &Block {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 97px;
+      background-color: var(--c-wh);
+      border-radius: 20px;
+      margin-top: 32px;
+      padding: 45px;
+      @include v.mp(t) {
+        gap: 20px;
+      }
+      @include v.mp(s) {
+        flex-direction: column-reverse;
+        gap: 20px;
+        padding: 30px 22px;
+      }
+
+      &:nth-child(odd) {
+        @include v.mp(lp) {
+          flex-direction: row-reverse;
+        }
+      }
+
+      &_left_img {
+        width: calc(503 / 1600);
+        height: auto;
+        @include v.mp(ts) {
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        &.--small {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: calc(320 / 503 * 100%);
+          }
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      &_left,
+      &_right {
+        width: calc(50% - 97px);
+        @include v.mp(ts) {
+          width: 100%;
+        }
+      }
+
+      &_right {
+        &_num {
+          position: relative;
+          color: var(--c-text-sub);
+          font-size: v.rem(64);
+          font-weight: 700;
+          letter-spacing: -26.24px;
+          &::before {
+            content: "POINT";
+            position: absolute;
+
+            top: 10px;
+            left: 15px;
+
+            display: inline-block;
+            transform: rotate(90deg);
+            transform-origin: left top;
+
+            color: var(--c-text-sub);
+            font-size: v.rem(13);
+            font-weight: 400;
+            line-height: 30px;
+            letter-spacing: 3.38px;
+          }
+        }
+        &_txt {
+          margin-top: 21px;
+          padding-left: 25px;
+          border-left: 1px solid var(--c-text-sub);
+          @include v.mp(s) {
+            padding-left: 16px;
+          }
+          h3 {
+            font-size: v.rem(32);
+            font-weight: 700;
+            line-height: 30px;
+          }
+          p {
+            margin-top: 24px;
+            font-size: v.rem(16);
+            font-weight: 500;
+            line-height: 30px;
+          }
+          & .u-txtBlue {
+            font-size: 18px;
+          }
+
+          & .c-btn {
+            margin-top: 39px;
+            margin: 39px 0px auto auto;
+          }
+        }
+      }
+    }
+  }
+
+  .p-company {
+    @include v.mp(ts) {
+      max-width: 768px;
+      margin: 0 auto;
+    }
+
+    &Inner {
+      width: calc(1360 / 1440 * 100%);
+      max-width: 1360px;
+      padding: 0 0 54px 99px;
+      margin: 0 auto;
+      border-radius: 10px;
+      background: var(--c-bg);
+      display: flex;
+      justify-content: center;
+      gap: 161px;
+      position: relative;
+      top: 86px;
+      @include v.mp(ts) {
+        width: 100%;
+        flex-direction: column-reverse;
+        gap: 30px;
+        padding: 40px 40px 20px;
+      }
+      p {
+        margin-top: 111px;
+        font-size: v.rem(16);
+        font-weight: 500;
+        line-height: 30px;
+        @include v.mp(ts) {
+          margin-top: 10px;
+        }
+      }
+
+      &_left {
+        width: calc(50% - 73px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        @include v.mp(ts) {
+          width: 100%;
+          height: auto;
+        }
+
+        & .c-btnAllow {
+          margin-top: 65px;
+          margin-left: auto;
+        }
+      }
+      &_right {
+        position: relative;
+        width: calc(50%);
+        display: inline-block;
+        border-radius: 10px;
+        @include v.mp(ts) {
+          width: 100%;
+        }
+        &_img {
+          position: absolute;
+          padding-right: 20px;
+          height: auto;
+          margin-top: -65px;
+          @include v.mp(ts) {
+            position: relative;
+            padding-right: 0;
+            margin-top: -86px;
+          }
+        }
+      }
+    }
+  }
+
+  .p-pv {
+    &Inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 89px;
+      margin-inline: 23px;
+      @include v.mp(ts) {
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      &_left,
+      &_right {
+        width: calc(570 / 1227 * 100%);
+        @include v.mp(ts) {
+          width: 100%;
+        }
+        iframe {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 570 / 320;
+        }
+      }
+      &_txt {
+        margin-top: 18px;
+        line-height: normal;
+      }
+      &_date {
+        margin-top: 4px;
+        color: #aeaeae;
+      }
+    }
+  }
+}

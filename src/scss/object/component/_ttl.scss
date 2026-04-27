@@ -1,0 +1,22 @@
+@use "../../variable/" as v;
+
+.c-ttl {
+    height: auto;
+  border-bottom: 0.5px solid var(--c-line);
+  padding-bottom: 13px;
+  line-height: normal;
+  p {
+    color: var(--c-text-sub);
+    font-size: v.rem(16);
+    font-weight: 700;
+    line-height: 15px;
+  }
+  h2 {
+    color: var(--c-text);
+    font-size: v.rem(40);
+    font-weight: 700;
+    @include v.mp(s) {
+      font-size: v.rem(36);
+    }
+  }
+}

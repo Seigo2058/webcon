@@ -1,0 +1,115 @@
+@use "../../variable/" as v;
+
+.c-btn {
+  width: fit-content;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 53px;
+    border-radius: 100vmax;
+    border: 2px solid var(--c-text);
+    color: var(--c-text);
+    font-size: v.rem(16);
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+  }
+  &Dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 100vmax;
+    background: var(--c-text);
+    transition: 0.3s ease-in-out;
+  }
+}
+
+.--c-bgBlue a:hover {
+  background: var(--c-text-sub);
+  border: 2px solid var(--c-text-sub);
+  color: var(--c-wh);
+
+  .c-btnDot {
+    background: var(--c-wh);
+  }
+}
+
+.--c-bdBlue a:hover {
+  border: 2px solid var(--c-base);
+  color: var(--c-text-sub);
+  .c-btnDot {
+    background: var(--c-text-sub);
+  }
+}
+
+.--c-bgWh a {
+  color: var(--c-wh) !important;
+  border: 2px solid var(--c-wh) !important;
+  .c-btnDot {
+    background: var(--c-wh) !important;
+  }
+  &:hover {
+    background: var(--c-wh) !important;
+    color: var(--c-text-sub) !important;
+
+    .c-btnDot {
+      background: var(--c-text-sub) !important;
+    }
+  }
+}
+// c-btn---------------------------------------------------------------------------------------
+
+// c-btnAllow---------------------------------------------------------------------------------------
+.c-btnAllow {
+  a {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 15px;
+    color: var(--c-text-sub);
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--c-lightblue-hover);
+
+      .c-btnAllow_img {
+        & path {
+          fill: var(--c-text-sub);
+        }
+        & circle {
+          stroke: var(--c-text-sub);
+          fill: var(--c-wh);
+        }
+      }
+    }
+  }
+  &_img {
+    & path {
+      transition: fill 0.3s ease-in-out;
+    }
+
+    & circle {
+      transition: stroke 0.3s ease-in-out, fill 0.3s ease-in-out;
+    }
+  }
+}
+
+// c-btnAllow---------------------------------------------------------------------------------------
+
+// c-btnSquare---------------------------------------------------------------------------------------
+.c-btnSquare {
+  padding: 20px 0;
+  width: fit-content;
+  height: auto;
+  a {
+    padding: 20px 45px;
+    background-color: var(--c-text-sub);
+    color: var(--c-wh);
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+    &:hover {
+      background-color: var(--c-lightblue-hover);
+    }
+  }
+}

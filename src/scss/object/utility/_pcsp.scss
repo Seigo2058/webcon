@@ -1,0 +1,20 @@
+@use "../../variable/" as v;
+
+.--pc {
+  @include v.mp(lp) {
+    display: block !important;
+  }
+  @include v.mp(ts) {
+    display: none !important;
+  }
+}
+
+.--sp {
+  @include v.mp(ts) {
+    display: block !important;
+  }
+
+  @include v.mp(lp) {
+    display: none !important;
+  }
+}

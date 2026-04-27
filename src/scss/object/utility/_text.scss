@@ -1,0 +1,9 @@
+@use '../../variable/' as v;
+
+.u-txtBlue {
+  color: var(--c-text-sub) !important;
+}
+
+.u-txtWh {
+  color: var(--c-wh) !important;
+}

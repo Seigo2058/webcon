@@ -1,0 +1,57 @@
+@use "../../variable/" as v;
+
+.u-pt {
+  &Sec {
+    padding-top: 180px !important;
+  }
+
+  &Mv {
+    padding-top: 100px !important;
+  }
+
+  &Line {
+    padding-top: 50px !important;
+  }
+
+  &Ttl {
+    padding-top: 32px !important;
+  }
+
+  &Foot {
+    padding-top: 180px !important;
+  }
+
+  @for $i from 0 through 200 {
+    &-#{$i} {
+      padding-top: v.rem($i);
+    }
+  }
+}
+
+.u-pb {
+  &Sec {
+    padding-bottom: 180px !important;
+  }
+
+  &Mv {
+    padding-bottom: 100px !important;
+  }
+
+  &Line {
+    padding-bottom: 50px !important;
+  }
+
+  &Ttl {
+    padding-bottom: 32px !important;
+  }
+
+  &Foot {
+    padding-bottom: 180px !important;
+  }
+
+  @for $i from 0 through 200 {
+    &-#{$i} {
+      padding-bottom: v.rem($i);
+    }
+  }
+}

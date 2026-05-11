@@ -62,8 +62,8 @@ a {
 }
 
 :root {
-  --f1: toppan-bunkyu-midashi-go-std, sans-serif;
-  --f2: ads-strong, sans-serif;
+  --f1: "toppan-bunkyu-midashi-go-std", sans-serif;
+  --f2: "ads-strong", sans-serif;
 }
 
 body {
@@ -74,12 +74,17 @@ body {
   color: var(--c-text);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: var(--f2);
 }
 
 a {
   color: inherit;
+}
+
+.temp-section {
+  height: 110vh;
 }
 
 .l-wrap-1100 {
@@ -362,26 +367,7 @@ a {
 }
 
 .c-ttl {
-  height: auto;
-  border-bottom: 0.5px solid var(--c-line);
-  padding-bottom: 13px;
-  line-height: normal;
-}
-.c-ttl p {
-  color: var(--c-text-sub);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 15px;
-}
-.c-ttl h2 {
-  color: var(--c-text);
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-@media screen and (max-width: 767px) {
-  .c-ttl h2 {
-    font-size: 2.25rem;
-  }
+  height: 110vh;
 }
 
 .c-menu {
@@ -552,6 +538,20 @@ a {
   font-weight: 400;
   line-height: 26px;
   color: var(--c-text);
+}
+
+.c-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500vh;
+}
+
+.is-show {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .about .p-philosophyInner {

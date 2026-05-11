@@ -1,0 +1,15 @@
+@use "../../variable/" as v;
+
+.c-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500vh;
+}
+
+.is-show {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}

@@ -1,4 +1,4 @@
-@use '../variable' as v;
+@use "../variable" as v;
 
 body {
   font-family: var(--f1);
@@ -8,10 +8,15 @@ body {
   color: var(--c-text);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: var(--f2);
 }
 
 a {
   color: inherit;
+}
+
+.temp-section {
+  height: 110vh;
 }

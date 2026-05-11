@@ -1,10 +1,10 @@
 @use "sass:math";
 
-:root{
-    --f1: toppan-bunkyu-midashi-go-std, sans-serif;
-    --f2 : ads-strong, sans-serif;
+:root {
+  --f1: "toppan-bunkyu-midashi-go-std", sans-serif;
+  --f2: "ads-strong", sans-serif;
 }
 
 @function rem($pixel) {
-	@return math.div($pixel, 16) * 1rem;
+  @return math.div($pixel, 16) * 1rem;
 }

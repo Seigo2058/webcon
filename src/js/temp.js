@@ -1,69 +1,81 @@
 const canvasArea = document.querySelectorAll(".c-canvas");
 
-// ★ 追加：アニメーション開始の許可を判定するフラグ
-let isAnimationStarted = false;
-// ★ 追加：発火した瞬間のスクロール量を記録する変数
-let startScrollY = 0;
-
-// 要素を監視
-const showCanvas = (entries) => {
-  const [entry] = entries;
-  if (entry.isIntersecting) {
-    canvasArea[0].classList.add("is-show");
-    console.log("show: 98%画面に入りました");
-
-    // ★ まだアニメーションが開始していなければ、フラグを立ててその時のスクロール量を記録
-    if (!isAnimationStarted) {
-      isAnimationStarted = true;
-      startScrollY = window.scrollY;
-    }
-  }
-};
-
-const options = {
-  threshold: 0.98,
-};
-
-const canvasObserver = new IntersectionObserver(showCanvas, options);
-
-if (canvasArea.length > 0) {
-  canvasObserver.observe(canvasArea[0]);
-}
-
 // canvasの設定
-function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight);
-  if (canvasArea.length > 0) {
-    canvas.parent(canvasArea[0]);
-  }
-}
+canvasArea.forEach((canvas) => {
+  // 初期設定
+  let isAnimationStarted = false;
+  let startScrollY = 0;
 
-function draw() {
-  background("#f0f0f0");
+  // 要素を監視
+  const showCanvas = (entries) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      canvas.classList.add("is-show");
+      console.log("show: 98%画面に入りました");
+      if (!isAnimationStarted) {
+        isAnimationStarted = true;
+        startScrollY = window.scrollY + window.innerHeight;
+      }
+    }
+  };
 
-  // デフォルトの直径
-  let diameter = 300;
+  const options = {
+    threshold: 0.98,
+  };
 
-  // ★ Observerが発火（isAnimationStartedがtrue）した以降のみ、サイズ変更の計算を行う
-  if (isAnimationStarted) {
-    const scrolled = window.scrollY;
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+  const canvasObserver = new IntersectionObserver(showCanvas, options);
+  canvasObserver.observe(canvas);
 
-    // 発火した時点からのスクロール移動量を算出
-    // ※上に戻った時に300より小さくしたくない場合は Math.max(0, scrolled - startScrollY) とします
-    const scrollAmount = scrolled - startScrollY;
+  let canvasText = canvas.dataset.text;
+  let canvasColor = canvas.dataset.color;
+  let canvasDiameter = canvas.dataset.diameter;
 
-    // 移動量をもとに直径を計算（0からスタートするため、綺麗に300に加算されます）
-    diameter = (scrollAmount / (viewportHeight * 2)) * viewportWidth + 300;
-  }
+  // 1. スケッチの設計図となる関数を定義
+  const mySketch = (p) => {
+    // 3. setupやdrawを p のプロパティとして定義
+    p.setup = () => {
+      // 2. p5の関数は p. をつけて呼び出す
+      p.createCanvas(p.windowWidth, p.windowHeight);
+    };
 
-  // 円の大きさを更新
-  fill("#31743F");
-  strokeWeight(0);
-  circle(windowWidth / 2, windowHeight / 2, diameter);
-}
+    p.draw = () => {
+      p.background("#fffbeb");
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+      // 直径デフォルト値
+      let diameter = parseInt(canvasDiameter);
+
+      if (isAnimationStarted) {
+        // スクロールに応じて円の大きさを変える
+        const scrolled = window.scrollY;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        const scrollAmount = Math.max(0, scrolled - startScrollY);
+
+        diameter =
+          (scrollAmount / (viewportHeight * 2)) * viewportWidth +
+          parseInt(canvasDiameter);
+      }
+
+      // 円の大きさを更新
+      p.fill(canvasColor);
+      p.strokeWeight(0);
+      p.circle(p.windowWidth / 2, p.windowHeight / 2, diameter);
+
+      // フォント
+      p.fill("#FFFFFF");
+      p.textFont("ads-strong");
+      p.textSize(54);
+      p.textAlign(p.CENTER, p.CENTER);
+      p.text(canvasText, p.windowWidth / 2, p.windowHeight / 2);
+    };
+
+    p.windowResized = () => {
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
+    };
+  };
+
+  // 4. 定義した関数を元にインスタンスを生成
+  // 第2引数でアタッチする親要素を指定（省略するとbodyの最後に追加される）
+  let myP5Instance = new p5(mySketch, canvas);
+});

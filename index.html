@@ -44,11 +44,74 @@
   </head>
 
   <body>
+    <!-- ヘッダー -->
+    <div class="header">
+      <button
+        class="hamburger-fade"
+        aria-label="メニュー"
+        aria-controls="fade-menu"
+        aria-expanded="false"
+      >
+        <div class="hamburger-fade__wrapper">
+          <span class="hamburger-fade__line"></span>
+          <span class="hamburger-fade__line"></span>
+          <span class="hamburger-fade__line"></span>
+        </div>
+      </button>
+
+      <nav id="fade-menu" class="nav-fade" aria-hidden="true">
+        <div class="nav-fade__bg"></div>
+        <div class="nav-fade__wrapper">
+          <p>となりの、デカくて不器用なヤツ</p>
+          <p>top</p>
+          <ul class="nav-fade__list">
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link">はじめに</a>
+            </li>
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link">ヒグマってどんな動物？</a>
+            </li>
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link">人のすぐそばで暮らすヒグマ</a>
+            </li>
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link"
+                >私たちが被害に遭わないために</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link"
+                >北海道で私たちとヒグマが共生してくために</a
+              >
+            </li>
+          </ul>
+          <p>detail</p>
+          <ul class="nav-fade__list">
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link"
+                >データで見るヒグマ、ヒグマと人の関わり</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link"
+                >北海道ヒグマ管理計画をわかりやすく解説！</a
+              >
+            </li>
+          </ul>
+          <p>other</p>
+          <ul class="nav-fade__list">
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link">参考文献</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- メインコンテンツ -->
     <main>
-      <div class="c-ttl">
-        <h1>はじめに</h1>
-        <h1>私たちが被害に&#10;あわないために</h1>
-        <p>ヒグマの生態</p>
+      <div class="c-mv">
+        <img src="./src/img/common/mv.png" alt="" />
       </div>
 
       <div class="c-canvas-wrapper">
@@ -60,6 +123,78 @@
         ></div>
       </div>
 
+      <!-- コンテナ1（画面固定：下からスライドして重なる） -->
+      <div class="pin-container">
+        <div class="text-wrapper">
+          <div class="item" id="item1">
+            <div class="pin-content js-scroll-text" id="text1">
+              <h2>彼らは臆病で神経質な動物です</h2>
+            </div>
+          </div>
+          <div class="item" id="item2">
+            <div class="pin-content js-scroll-text" id="text2">
+              <img src="./src/img/common/Frame 33.png" alt="" />
+              <h4>
+                実は、彼らは臆病で神経質な生き物です。本来は、積極的に人を襲うことはなく、人間を見ると逃げていきます。
+              </h4>
+            </div>
+          </div>
+          <div class="item" id="item3">
+            <div class="pin-content js-scroll-text" id="text3">
+              <img src="./src/img/common/Frame 32.png" alt="" />
+              <div>
+                <h4>
+                  しかし近年、森林の環境変化や人間社会の変化によって、彼らと人間の”あつれき”が増加しています。
+                </h4>
+                <p>あつれき（軋轢） … 人間とヒグマが仲が悪くあい争うこと。</p>
+              </div>
+            </div>
+          </div>
+          <div class="item" id="item4">
+            <div class="pin-content js-scroll-text" id="text4">
+              <img
+                id="bear-distance"
+                src="./src/img/common/Frame 31.png"
+                alt=""
+              />
+              <h4>
+                彼らは人間を攻撃するために人里に降りてくるわけではありません。今の環境に適応しようと行動した結果、問題のある個体になり駆除されています。
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- コンテナ2（画面固定：その場でフェードインして切り替わる） -->
+      <div class="pin-container2">
+        <div class="text-wrapper2">
+          <div class="item" id="item5">
+            <div class="pin-content2" id="text5">
+              <h3>
+                ヒグマとの”あつれき”を減らすために、私たち、北海道に住む若者にできること。
+              </h3>
+              <img
+                id="man_standing"
+                src="./src/img/common/man_student.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="item" id="item6">
+            <div class="pin-content2" id="text6">
+              <img src="./src/img/common/beartools.png" alt="" />
+            </div>
+          </div>
+          <div class="item" id="item7">
+            <div class="pin-content2" id="text7">
+              <h3>
+                それは、ヒグマと人間の問題に当事者意識を持つこと、ヒグマの正しい生態を知ることです。<br />この機会に、私たちが住む北海道の雄大な自然の象徴、ヒグマについて知ってみましょう。
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="c-canvas-wrapper">
         <div
           class="c-canvas"
@@ -67,6 +202,287 @@
           data-color="#90653A"
           data-diameter="400"
         ></div>
+      </div>
+
+      <div class="bento-intro">
+        <h3>
+          ヒグマの体重や身長、食べているものは何か知っていますか？
+          <br />まずは簡単に知ってみましょう。
+        </h3>
+      </div>
+
+      <!-- 弁当グリッド -->
+      <div class="grid-container">
+        <div class="bento-grid">
+          <div class="bento-item item-1">
+            <p>地域個体群</p>
+            <img id="img-1" src="./src/img/common/chikikotaigun.svg" alt="" />
+          </div>
+          <div class="bento-item item-2">
+            <p>季節の食べ物</p>
+            <img
+              id="img-2"
+              src="./src/img/common/kisetsunotabemono.svg"
+              alt=""
+            />
+          </div>
+          <div class="bento-item item-3">
+            <p>体重</p>
+            <img id="img-3" src="./src/img/common/taijuu.svg" alt="" />
+          </div>
+          <div class="bento-item item-4">
+            <p>身長</p>
+            <img id="img-4" src="./src/img/common/shincho.svg" alt="" />
+          </div>
+          <div class="bento-item item-5">
+            <p>行動範囲</p>
+            <img id="img-5" src="./src/img/common/kodohanni.svg" alt="" />
+          </div>
+          <div class="bento-item item-6">
+            <p>一日の行動</p>
+            <img id="img-6" src="./src/img/common/ichinichinokodo.svg" alt="" />
+          </div>
+          <div class="bento-item item-7">
+            <p>個体数</p>
+            <img id="img-7" src="./src/img/common/kotaisu.svg" alt="" />
+          </div>
+          <div class="bento-item item-8">
+            <p>カロリー</p>
+            <img id="img-8" src="./src/img/common/calorie.svg" alt="" />
+          </div>
+          <div class="bento-item item-9">
+            <p>季節別行動</p>
+            <img
+              id="img-9"
+              src="./src/img/common/kisetsubetsukodo.svg"
+              alt=""
+            />
+          </div>
+          <div class="bento-item item-10">
+            <p>五感</p>
+            <img id="img-10" src="./src/img/common/gokan.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="description">
+          <div class="desc-item kotaigun">
+            <div class="desc-item-inner">
+              <h6 class="desc-title">地域個体群</h6>
+              <p>
+                面積が広い北海道では、同じヒグマでも地域によって生息密度や地理的特性・人との関係が異なります。そのため、5つの地域個体群に分かれています。
+              </p>
+              <h6 style="color: #62a7af">渡島半島地域個体群</h6>
+              <ul>
+                <li>個体数：約2,118頭</li>
+                <li>地形：急な山地が海岸まで迫る狭い半島</li>
+                <li>
+                  軋轢：山地と住宅地の距離が近いため、ヒグマとの距離も近い。
+                </li>
+              </ul>
+              <h6 style="color: #5684ac">積丹・恵庭地域個体群</h6>
+              <ul>
+                <li>個体数：約852頭</li>
+                <li>
+                  地形：長万部町がある黒松内低地と札幌市がある石狩低地帯に挟まれた地域に生息する。
+                </li>
+                <li>
+                  軋轢：近年の個体数増加と分布拡大に伴い、札幌市街地などで人とのあつれきが深刻化している。
+                </li>
+              </ul>
+              <h6 style="color: #d9c255">日高・夕張地域個体群</h6>
+              <ul>
+                <li>個体数：約4,046頭</li>
+                <li>地形：日高山脈と夕張山脈を中心に分布</li>
+                <li>軋轢：山すそでは古くから農業被害が多く発生している</li>
+              </ul>
+              <h6 style="color: #3b9048">天塩・増毛地域個体群</h6>
+              <ul>
+                <li>個体数：約978頭</li>
+                <li>地形：天塩山地と増毛山地に分布</li>
+                <li>
+                  軋轢：かつて生息数が激減しましたが、近年は生息数が増加に転じて、分布域も拡大傾向にある。農業被害は近年急激な増加傾向にある。
+                </li>
+              </ul>
+              <h6 style="color: #d870a6">道東・宗谷地域個体群</h6>
+              <ul>
+                <li>個体数：約3,544頭</li>
+                <li>地形：大雪山系、知床半島、白糠丘陵を含む地域に分布</li>
+                <li>
+                  軋轢：森林の周囲を大規模な酪農・畑作地帯が囲んでいるため、境界部での農業被害が古くから多発している。
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="desc-item kisetsunotabemono">
+            <h6 class="desc-title">季節の食べ物</h6>
+            <p>
+              ヒグマは分類上「食肉目」に属していますが、実際には雑食性の動物です。地域や環境によって食べるものは変化しますが、本来は植物性のエサが大部分を占めています。
+            </p>
+            <p>
+              季節ごとに手に入りやすい植物が変化するため、季節ごとに食性が大きく異なります。
+            </p>
+            <h6 style="color: #cc699e">春</h6>
+            <p>
+              フキ、ザゼンソウ、ミズバショウ、セリ科などの草本類を主に食べます。越冬できなかったエゾシカの死骸を食べたり、動きの遅い小鹿をを捕食したりもします。
+            </p>
+            <h6 style="color: #907232">夏</h6>
+            <p>
+              フキやセリ科など草本類も食べますが、アリ、ハチ、サリガニなどの昆虫や甲殻類、キイチゴやヤマグワなどの果実を主に食べます。
+            </p>
+            <p>
+              夏と秋の境目の時期は、草本類が成長して硬くなり、木の実が実る前の季節です。そのため、食べ物が不足しやすい時期です。
+            </p>
+            <h6 style="color: #905432">秋</h6>
+            <p>
+              ドングリやクルミなどの堅果類、ヤマブドウやサルナシなど液果類を主に食べます。冬眠に向けて大量の脂肪を蓄えるため多くのカロリーを摂取します。
+            </p>
+          </div>
+          <div class="desc-item taijuu">
+            <h6 class="desc-title">体重</h6>
+            <div class="desc-comp-pic">
+              <img src="./src/img/common/bear_taijuu_osu.png" alt="" />
+              <img src="./src/img/common/bear_taijuu_mesu.png" alt="" />
+            </div>
+            <p>ヒグマは日本で最大の陸上動物です。</p>
+            <p>
+              通常オスは大きくても300kg台ですが、過去には体重500kgに迫る超大型の個体も確認されています。
+            </p>
+            <h6>季節変動</h6>
+            <p>
+              ヒグマは冬に一切の飲食や排泄を行わない「冬眠」をします。そのため、秋になるとドングリやサルナシなどを大量に食べ、冬眠に備えて皮下脂肪を蓄えます。体重は春から夏にかけて減少し、秋は急増します。冬の間、蓄えた脂肪を消費して過ごすため、春には大きく体重が減少しています。
+            </p>
+            <h6>食環境の違い</h6>
+            <p>
+              肉食（サケなどの魚類や、他の動物の肉）の割合が高い地域ほど、ヒグマは巨大化する傾向にあります。
+            </p>
+          </div>
+          <div class="desc-item shincho">
+            <h6 class="desc-title">身長</h6>
+            <p>
+              ヒグマは周囲を警戒したり、威嚇したりする際に後脚で2本足で立ち上がることがあります。
+              ヒグマが立ち上がった状態の高さは、人間の身長と同じかそれ以上になります。
+            </p>
+            <h6>生まれた時の大きさ</h6>
+            <p>
+              成獣はこれほど巨大になりますが、冬眠中の穴の中で生まれる生まれたばかりの子グマの体長はわずか20cm〜30cm程度、体重は400gほどしかありません。人間の手のひらに乗るほどの大きさから、2~3年で体長は130cm~160cm、体重は70kg~120kg（オスの場合）に成長します。
+            </p>
+            <h6>体長がMAXになるまで何年もかかる</h6>
+            <p>
+              人間も成長期がありますが、ヒグマも最大の体長に達するまでにはかなりの時間を要します。
+              メスはだいたい4〜6歳頃で体の成長が止まりますが、オスは8歳から10歳頃まで数年かけてじわじわと体が大きくなり続けます。そのため、群を抜いて巨大な体長を持つオスは、厳しい自然界を長年生き抜いてきた「ベテランの高齢グマ」であることがほとんどです。
+            </p>
+          </div>
+
+          <div class="desc-item koudohani">
+            <h6 class="desc-title">行動範囲</h6>
+            <img src="./src/img/common/koudohani_picture.png" alt="" />
+            <h5>ヒグマは、個体ごとにそれぞれの行動圏が決まっています。</h5>
+            <p>
+              行動圏の広さは、オスが数百㎢、メスが数十㎢と、オスの方がメスよりも広いことが分かっています。オスは、繁殖のためにメスを探して歩き回るため、行動圏が広くなります。行動圏の広さは、地域や餌資源の量によっても変わり、餌資源が多い地域では、行動圏は狭くなります。また、ヒグマには、「なわばり（他の個体の侵入を許さない範囲）」はなく、行動圏も他の個体と重複しています。
+            </p>
+          </div>
+          <div class="desc-item ichinichinokodo">
+            <h6 class="desc-title">一日の行動</h6>
+            <p>
+              山の中に住むヒグマは基本的に昼行性で、早朝や夕方に比較的活発になります。人間と同じように、昼間は活動して夜間は睡眠する生活をしています。ただし、人里の近くでは、人間に見つからないために姿を隠して夜間に行動することが多いです。
+            </p>
+            <h6>ヒグマの習慣</h6>
+            <h6>背擦り</h6>
+            <p>
+              背擦りは、樹皮を剥ぐ、噛む、体を擦りつける等の行動で、繁殖期の5〜7月に活発化し6月にピークを迎えます。目的は個体間のコミュニケーションと考えられ、特にオスによる利用頻度が高いのが特徴です。トドマツ等の太い針葉樹が、獣道や林道沿いで選択的に利用されます。
+            </p>
+            <h6>土まんじゅう</h6>
+            <p>
+              ヒグマはシカの死体など一度に食べきれない大きな餌を手に入れると、土や木の枝葉などの周りにある物をかぶせて隠し、しばらくその場に居座ります。これは、土饅頭と呼ばれます。土饅頭に近づくと、餌を守るためにクマが攻撃してくることがあります。シカの死体の近くにはクマが潜んでいる可能性があるので、絶対に近づかないようにしましょう。
+            </p>
+          </div>
+          <div class="desc-item kotaisu">
+            <h6 class="desc-title">個体数</h6>
+            <img src="./src/img/common/kotaisu_graph.png" alt="" />
+            <h5>北海道のヒグマ推定生息数は約11,661頭でした。</h5>
+            <p>
+              1990年時点での生息数5800±2300頭と比較すると、約30年間で倍増していることになります。生息数は1990年代から2022年まで単調に増加しており、2023年は駆除数増加の影響で多少の減少がありました。
+            </p>
+          </div>
+          <div class="desc-item kalorie">
+            <h6 class="desc-title">カロリー</h6>
+            <h5>ヒグマが一日で食べるカロリーは、約20,000カロリー</h5>
+            <p>
+              クマの摂食量は、年齢や性別、体格によって大きく異なります。オスの成獣の場合、1日に約13kgもの食物を数回に分けて平らげます。季節による変動も顕著で、冬ごもりを控えた秋は特に大量に摂取します。
+            </p>
+            <h6>
+              オスの成獣が一日で食べる量(13kg)を人間の食べ物で例えると、、、
+            </h6>
+            <div class="desc-comp-pic">
+              <div>
+                <img src="./src/img/common/rice.png" alt="" />
+                <h6>約83杯分</h6>
+              </div>
+              <div>
+                <img src="./src/img/common/pizza.png" alt="" />
+                <h6>約80枚分</h6>
+              </div>
+              <div>
+                <img src="./src/img/common/hamberger_illust.png" alt="" />
+                <h6>約12枚分</h6>
+              </div>
+            </div>
+            <h6>札幌市の円山動物園で暮らすヒグマの場合</h6>
+            <p>
+              １日の食事のペースは、朝と昼に大量に食べ、夕方は少なめに済ませるのが一般的なサイクルだそうです。性別による食事量の差も大きく、メスが1日10〜15kgほどであるのに対し、オスは多い時で1日24kgもの食物を胃袋に収めます。
+            </p>
+          </div>
+          <div class="desc-item kisetsubetsukodo">
+            <div class="desc-item-inner">
+              <h6 class="desc-title">季節別行動</h6>
+              <h6 style="color: #5684ac">雪解け直後 <冬眠明け></h6>
+              <p>
+                ヒグマは目や耳は小さいですが、鼻は長く突き出しています。ヒグマの嗅覚はとても発達しており、犬の６倍ともいわれる嗅覚を持っています。数百メートル離れた食物のにおいや、土に埋まった食物のにおいも嗅ぎつけます。ヒグマは「におい」に頼って生活しています。
+              </p>
+              <h6 style="color: #cc699e">春~初夏 <繁殖期></h6>
+              <p>
+                オスがメスを求めて広範囲を動き回ります。オスの成獣は自らの子孫を残すため、血の繋がりのない子グマを殺してしまう習性があります。そのため、子連れの母グマは子を守るため、山林部を避けて生活することがあります。
+              </p>
+              <h6 style="color: #907232">晩夏 <端境期></h6>
+              <p>
+                草本類を主食としていたヒグマが木の実を中心に利用するまでの間の時期で、森林内の食べ物が少なくなります。この時期から川ではサケのそじょうが始まりますが、サケがそじょうするエリアは知床半島など、ごく一部です。食べ物を探して行動エリアを変えるため、人目につきやすい時期です。農地には栄養価の高い農作物が豊富にあるため、一年で最も農業被害が多い時期です。
+              </p>
+              <h6 style="color: #905432">秋 <過食期></h6>
+              <p>
+                冬眠に備えてたくさん食べ物を食べて栄養を蓄えます。ドングリやクルミなどの堅果類が豊富に実るため通常であれば食べ物に困ることはありませんが、それらが不作になると行動エリアを広げて、広範囲を移動します。
+              </p>
+              <h6 style="color: #5684ac">冬 <冬眠・出産></h6>
+              <p>
+                十分に栄養を蓄えたヒグマは冬眠穴で冬眠します。ヒグマの冬眠穴は、「樹木の根を利用してその下に掘り込むタイプ」と「そのままの地面に掘る土穴タイプ」に分けられます。また、自然の穴を利用するものは岩穴と樹洞に分けることができる。妊娠したメスは冬眠中に出産し、春まで冬眠穴で子育てをします。
+              </p>
+            </div>
+          </div>
+          <div class="desc-item gokan">
+            <div class="desc-item-inner">
+              <h6 class="desc-title">五感</h6>
+              <h6>嗅覚</h6>
+              <p>
+                ヒグマは目や耳は小さいですが、鼻は長く突き出しています。ヒグマの嗅覚はとても発達しており、犬の６倍ともいわれる嗅覚を持っています。数百メートル離れた食物のにおいや、土に埋まった食物のにおいも嗅ぎつけます。ヒグマは「におい」に頼って生活しています。
+              </p>
+              <h6>聴覚</h6>
+              <p>
+                非常に優れ、音に対しては大変敏感です。ヒグマは聴覚が優れており、特に80～120ヘルツ程度の低周波の音や、130デシベル程度の突発的な大きい音を強く警戒する習性が知られています。人間の足音や話し声に対しても敏感に反応し、近くに人の気配を感じるとその場を離れる場合が少なくありません。
+              </p>
+              <h6>視覚</h6>
+              <p>
+                ヒグマの視覚は人間より劣るとされ、遠くの静止物は苦手ですが、夜間や薄暗い環境でも活動できる「夜目」が効き、動きには敏感です。嗅覚・聴覚に比べると弱いものの、日中から夜間まで行動可能で、特に早朝・夕方は活動が活発になるため注意が必要です。
+              </p>
+              <h6>味覚</h6>
+              <p>
+                ドングリやザゼンソウだけでなく、人間と同じように山菜や果物、農作物を美味しいと感じます。大きな犬歯を持つが、食べ物は植物質中心のため、大臼歯は食べ物をすりつぶすのに適した形状になっています。
+              </p>
+              <h6>触覚</h6>
+              <p>
+                ヒグマの触覚で重要なのは、口元や目の周りにある感覚毛（ひげ）です。これらは暗闇や茂みで周囲の状況を把握するセンサーの役割を果たします。また、敏感な鼻先や足裏を通じて、獲物や地形の微細な振動を察知します。
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="c-canvas-wrapper">
@@ -78,6 +494,181 @@
         ></div>
       </div>
 
+      <!-- コンテナ3（画面固定：その場でフェードインして切り替わる） -->
+      <div class="pin-container3">
+        <div class="text-wrapper3">
+          <div class="item" id="item8">
+            <div class="pin-content3" id="text8">
+              <img id="pin3-tree" src="./src/img/common/Tree.png" alt="" />
+              <img
+                class="pin3-manstudent"
+                id="pin3img8"
+                src="./src/img/common/man_student.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="item" id="item9">
+            <div class="pin-content3" id="text9">
+              <video
+                id="video9"
+                src="./src/video/bear_walking.webm"
+                muted
+                playsinline
+              ></video>
+            </div>
+          </div>
+          <div class="item" id="item10">
+            <div class="pin-content3" id="text10">
+              <h3>日本で最も大きな都道府県、北海道。</h3>
+            </div>
+          </div>
+          <div class="item" id="item11">
+            <div class="pin-content2" id="text11">
+              <h3>
+                ヒグマは大自然に囲まれてぽつりぽつりと暮らしている<br />そんなイメージではないでしょうか？
+              </h3>
+            </div>
+          </div>
+          <div class="item" id="item12">
+            <div class="pin-content3" id="text12">
+              <h3>
+                しかし、世界的にみるとクマと人間が高密度で共生している地域なんです。
+              </h3>
+              <h3>
+                世界のヒグマの生息地域の人口密度は約0~2人/㎢ですが、北海道の人口密度は69人/㎢です。
+              </h3>
+            </div>
+          </div>
+          <div class="item" id="item13">
+            <div class="pin-content3" id="text13">
+              <h3>つまり、北海道のヒグマと人間は切っても切れない関係性。</h3>
+            </div>
+          </div>
+          <div class="item" id="item14">
+            <div class="pin-content3" id="text14">
+              <h3>実際に何が起こっているのか見てみましょう。</h3>
+              <img
+                class="pin3-manstudent"
+                src="./src/img/common/man_student_question.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- アコーディオン -->
+      <div class="accordion-wrapper">
+        <ul class="accordion-area">
+          <li>
+            <!--li ~ /li までが一つのアコーディオン-->
+            <section class="accordion-container">
+              <div class="question-box">
+                <h6 class="question-figure">01</h6>
+                <h5 class="question-title">
+                  最近、住宅街でヒグマが出没したニュースをよく見るけど、どうして？
+                </h5>
+                <img src="./src/img/common/tairitsu1.png" alt="" />
+              </div>
+              <div class="answer-box">
+                <h6 class="answer-title">
+                  A:生息数が増えて、ヒグマの住む場所がなくなったといったシンプルな理由ではなく、いくつもの複合的な要因があります。
+                </h6>
+                <div class="answer-text-container">
+                  <p>
+                    晩夏はもともとエサが不足しやすい季節でヒグマがエサを探し回る範囲を広げて市街地に出没しやすい季節です
+                  </p>
+                  <p>
+                    時間をかけて徐々に定住していったメスグマや独り立ちのために遠くへ移動している最中に市街地に出てしまった若ぐまが出没しやすいです
+                  </p>
+                  <p>
+                    生ごみやコンポスター、畑などに捨てられた規格外の農作物など人為的な誘因物がヒグマに魅力的な場所だと学習させている
+                  </p>
+                  <p>
+                    森林近くの果樹園や農地にはヒグマが利用できるエサがたくさんあります
+                  </p>
+                </div>
+              </div>
+              <img
+                class="accordion-icon"
+                src="./src/img/common/accordion-close.png"
+                alt=""
+              />
+            </section>
+          </li>
+
+          <li>
+            <section class="accordion-container">
+              <div class="question-box">
+                <h6 class="question-figure">02</h6>
+                <h5 class="question-title">
+                  農地でヒグマが繰り返し出没するのはなぜ？
+                </h5>
+                <img src="./src/img/common/tairitsu2.png" alt="" />
+              </div>
+              <div class="answer-box">
+                <h6 class="answer-title">
+                  A:森林の餌不足やシカの急増により、ヒグマは農作物に依存しています。
+                </h6>
+                <div class="answer-text-container">
+                  <p>
+                    農地周辺は「アトラクティブ・シンク（魅力的な罠）」と化しており、駆除で空いた場所に中心部から新個体が次々流入する負の連鎖が生じています。
+                  </p>
+                  <p>
+                    箱わなによる無差別な駆除は、危険性の学習を妨げ、さらなる流入を招く可能性も指摘されています。
+                  </p>
+                  <p>
+                    農家の減少や大規模機械化で人の気配が薄れ、地域の「守備力」が低下したことも、繰り返し出没を許す要因となっています。
+                  </p>
+                </div>
+              </div>
+              <img
+                class="accordion-icon"
+                src="./src/img/common/accordion-close.png"
+                alt=""
+              />
+            </section>
+          </li>
+
+          <li>
+            <section class="accordion-container">
+              <div class="question-box">
+                <h6 class="question-figure">03</h6>
+                <h5 class="question-title">
+                  最近エゾシカが増えているけど、ヒグマとの関係は？
+                </h5>
+                <img src="./src/img/common/tairitsu1.png" alt="" />
+              </div>
+              <div class="answer-box">
+                <h6 class="answer-title">
+                  A:エゾシカの増加によって、ヒグマの食性に占めるエゾシカの割合が大きく増加しています。
+                </h6>
+                <div class="answer-text-container">
+                  <p>
+                    エゾシカの生息数増加とヒグマによるエゾシカの新生児採食割合は比例しています。
+                  </p>
+                  <p>
+                    エゾシカ侵入防止柵や狩猟数の増加によるエゾシカの死体の増加もヒグマの食性に影響しています。
+                  </p>
+                  <p>
+                    エゾシカの増加がヒグマの生存率・繁殖率・成長率にプラスを及ぼした可能性が指摘されています。
+                  </p>
+                  <p>
+                    エゾシカなどの草食獣による林床植生や樹木への影響林床植生のバイオマスの減少・構成種の変化がヒグマの森林でのエサ不足に影響しています。
+                  </p>
+                </div>
+              </div>
+              <img
+                class="accordion-icon"
+                src="./src/img/common/accordion-close.png"
+                alt=""
+              />
+            </section>
+          </li>
+        </ul>
+      </div>
+
       <div class="c-canvas-wrapper">
         <div
           class="c-canvas"
@@ -87,10 +678,196 @@
         ></div>
       </div>
 
-      <div class="temp-section"></div>
+      <div class="our-measures">
+        <section class="measure measure-tools">
+          <h3>ヒグマの近くに行く時の道具</h3>
+          <div class="measure-contents">
+            <div class="tool-pictures">
+              <img id="tool-pocket" src="./src/img/common/pocket.png" alt="" />
+              <img id="tool-bell" src="./src/img/common/bell.png" alt="" />
+              <img id="tool-spray" src="./src/img/common/spray.png" alt="" />
+              <img
+                id="tool-bearhorn"
+                src="./src/img/common/bearhorn.png"
+                alt=""
+              />
+              <img
+                id="tool-handy-radio"
+                src="./src/img/common/handy_radio.png"
+                alt=""
+              />
+              <img id="tool-bag" src="./src/img/common/bag.png" alt="" />
+            </div>
+            <div class="memo-content">
+              <div class="memo-text-content">
+                <h5>もしもに備える道具</h5>
+                <p>
+                  私たちが被害を受けないためには、まずはヒグマに私たちの存在を知らせることが重要です。
+                </p>
+                <p>
+                  また、近距離まで接近してしまった最悪の場合に備えて、撃退できる道具を持つことが有効です。
+                </p>
+              </div>
+              <img src="./src/img/common/memo.png" alt="" />
+            </div>
+          </div>
+        </section>
+        <section class="measure measure-garbage">
+          <h3>ゴミ出しのルールを守ろう</h3>
+          <div class="measure-contents">
+            <img
+              id="garbage-picture"
+              src="./src/img/common/garbage.png"
+              alt=""
+            />
+            <div class="memo-content">
+              <div class="memo-text-content">
+                <p>
+                  熊は嗅覚が鋭く、一度ごみの味を覚えると、同じ場所に何度も出没する習性があります。ごみを正しく出すだけで、熊の出没を減らし、地域の安全を守ることができます。
+                </p>
+                <h6>密閉する</h6>
+                <p>
+                  ごみは必ず袋や容器で封をし、匂いが漏れないようにしましょう。また、しっかり密閉することで、熊がごみの場所を覚えるのを防げます。
+                </p>
+                <h6>残渣の処理</h6>
+                <p>
+                  家庭や農地で出るメロンなどの作物の残渣も放置せず適切に処理してください。
+                </p>
+                <h6>夜間のごみ出しを避ける</h6>
+                <p>
+                  熊は夜行性のため、夜にごみを出すと出没リスクが高まります。
+                </p>
+              </div>
+              <img src="./src/img/common/memo.png" alt="" />
+            </div>
+          </div>
+        </section>
+        <section class="measure measure-info">
+          <h3>ヒグマ出没情報を知ろう</h3>
+          <div class="measure-contents">
+            <div class="measure-info-map">
+              <iframe
+                src="https://www.google.com/maps/d/embed?mid=1KFgO-08qe4azD2bx968B7SM7nus&ehbc=2E312F"
+              ></iframe>
+              <img src="./src/img/common/pc.png" alt="" />
+            </div>
+            <div class="memo-content">
+              <div class="memo-text-content">
+                <p>
+                  現在、ヒグマの出没状況をまとめた道庁サイトや、皆で出没・痕跡情報を共有・投稿できる『ヒグマップ』といった情報源があります。
+                </p>
+                <p>
+                  お出かけ前には市町村や警察署の情報も含めて確認し危険な場所への立ち入りを避け、もしヒグマや痕跡を発見した場合はヒグマップ等への通報にご協力をお願いします。
+                </p>
+                <p>北海道庁ウェブサイト</p>
+                <p>
+                  (https://www.pref.hokkaido.lg.jp/ks/<br />skn/higuma/207234.html)
+                </p>
+                <p>ヒグマップ</p>
+                <p>(https://higumap.info/login?principal=anonymousUser)</p>
+              </div>
+              <img src="./src/img/common/memo.png" alt="" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- コンテナ4 -->
+      <div class="pin-container4">
+        <div class="bg-wrapper">
+          <img src="./src/img/common/zoning-measure.png" alt="" />
+        </div>
+        <div class="text-wrapper4">
+          <h3>北海道で私たちとヒグマが共存していくために</h3>
+          <p>
+            一つの島の中で、ヒグマと人間はそれぞれ異なる環境を求めています。
+            生態系に大きな影響を及ぼす両者が、永続的に共存するために必要な対策は何でしょうか。
+          </p>
+          <p>
+            ヒグマの調査研究を発展させ、「種の保全」と「問題個体の駆除」を両立した適切な管理体制を築くことが不可欠です。
+            その上で、ヒグマに人間の食べ物を与えない環境づくりと、それらがなくても生存できる自然環境の整備を並行して進める必要があります。
+          </p>
+          <p>
+            北海道は令和4年に「北海道ヒグマ管理計画（第2期）」を発表しました。
+            地域個体群の存続を図りつつ、ICT等の最新技術や科学的知見を柔軟に活用し、出没抑制から発生時の対応まで、
+            総合的なあつれき低減策を一層強化することを目的としています。
+          </p>
+          <p>
+            日本政府は、令和7年に「クマ被害対策パッケージ」を発表しました。
+            クマによる死者数が過去最多を更新し、人身被害が増大・多様化・広域化する深刻な事態に対処するためです。
+            国民の命と暮らしを守るべく、関係省庁が連携して実効性の高い対策を段階的に実行します。
+          </p>
+          <p>
+            国や北海道はこれらの取り組みを通して、北海道におけるヒグマの種の保全と被害の最小化の両立を目指しています。
+            では、具体的な対策を下のボタンから見てみましょう。
+          </p>
+        </div>
+      </div>
+
+      <div class="child-intro">
+        <h3>くわしく知りたい方はこちら</h3>
+        <p>
+          このページでは載せ切れないヒグマについての詳しい情報を詳しく解説します。
+        </p>
+        <div class="child-page-wrapper">
+          <div class="child-page-block">
+            <img
+              class="child-page-thumb"
+              src="./src/img/common/bear-graph.png"
+              alt=""
+            />
+            <div class="child-page-text-content">
+              <h5>データで見るヒグマとの関わり</h5>
+              <p>
+                私たちの暮らしのすぐそばに生息するヒグマ。近年、目撃情報や出没件数の増加がニュースを賑わせていますが、実際のところ何が起きているのでしょうか。
+              </p>
+            </div>
+            <img
+              class="child-page-btn"
+              src="./src/img/common/child-page-btn.png"
+              alt=""
+            />
+          </div>
+          <div class="child-page-block">
+            <img
+              class="child-page-thumb"
+              src="./src/img/common/hokkaido-measure.png"
+              alt=""
+            />
+            <div class="child-page-text-content">
+              <h5>「北海道ヒグマ管理計画」をわかりやすく</h5>
+              <p>
+                被害増加を受けて見直される「北海道ヒグマ管理計画」。
+                北海道が目指すこれからのヒグマ対策を分かりやすく紐解きます。
+              </p>
+            </div>
+            <img
+              class="child-page-btn"
+              src="./src/img/common/child-page-btn.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <img
+          class="returntotop"
+          src="./src/img/common/returntotop.png"
+          alt=""
+        />
+        <div class="footer-text">
+          <p>となりの、デカくて不器用なやつ</p>
+        </div>
+      </footer>
     </main>
 
     <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./src/js/accordion.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="./src/js/gsap.js"></script>
     <script type="module" src="./src/js/main.js"></script>
     <script src="./src/js/bg-p5.js"></script>
   </body>

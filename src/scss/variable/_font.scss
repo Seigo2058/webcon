@@ -1,8 +1,44 @@
 @use "sass:math";
 
 :root {
-  --f1: "toppan-bunkyu-midashi-go-std", sans-serif;
-  --f2: "ads-strong", sans-serif;
+  --f1: rocknroll-one, sans-serif;
+  --f2: toppan-bunkyu-midashi-go-std, sans-serif;
+
+  text-align: center;
+}
+
+h2 {
+  font-family: var(--f1);
+  font-size: 40px;
+  color: #fff;
+}
+
+h3 {
+  font-family: var(--f1);
+  font-size: 28px;
+  color: #fff;
+}
+
+h4 {
+  font-family: var(--f1);
+  font-size: 24px;
+  color: #fff;
+}
+
+h5 {
+  font-family: var(--f2);
+  font-size: 24px;
+  color: #fff;
+}
+
+h6 {
+  font-family: var(--f2);
+  font-size: 20px;
+}
+
+p {
+  font-family: var(--f2);
+  font-size: 16px;
 }
 
 @function rem($pixel) {

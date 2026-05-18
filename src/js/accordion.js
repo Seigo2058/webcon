@@ -1,5 +1,5 @@
 //アコーディオンをクリックした時の動作
-$(".accordion-area").on("click", function () {
+$(".accordion-area li").on("click", function () {
   //タイトル要素をクリックしたら
   var findElm = $(this).find(".answer-box"); //直後のアコーディオンを行うエリアを取得し
   $(findElm).toggleClass("is-open");

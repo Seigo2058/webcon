@@ -123,6 +123,7 @@ tl3
         x: "30vw",
         duration: 5,
         ease: "none",
+        zIndex: 0,
         onStart: function () {
           video.play();
         },

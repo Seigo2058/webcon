@@ -259,27 +259,21 @@ a {
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: #d35228;
 }
 
 .accordion-area {
+  width: 90%;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
   overflow-x: scroll;
-  scrollbar-width: none;
-  padding-left: calc(50vw - 830px); /* 830pxは1660pxの半分 */
-  padding-right: calc(50vw - 830px);
+  gap: 3%;
 }
 
-/* 画面幅が1660pxより小さくなった時に、最低限の余白を確保する安全策 */
-@media (max-width: 1660px) {
-  .accordion-area {
-    padding-left: 20px; /* 任意の左右余白 */
-    padding-right: 20px;
-  }
-}
 .accordion-area li {
   height: 664px;
-  border: 1px solid #ccc;
+  width: auto;
 }
 
 .accordion-container {

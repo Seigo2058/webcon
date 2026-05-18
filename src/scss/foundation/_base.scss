@@ -149,7 +149,7 @@ a {
   z-index: 0;
 }
 
-/*アコーディオン全体*/
+/* アコーディオンパネル */
 .accordion-wrapper {
   width: 100%;
   height: 100vh;
@@ -157,6 +157,7 @@ a {
   align-items: center;
   justify-content: center;
   background-color: #d35228;
+  text-align: left;
 }
 
 .accordion-area {
@@ -170,36 +171,66 @@ a {
 .accordion-area li {
   height: 664px;
   width: auto;
+  border-radius: 16px;
 }
 
 .accordion-container {
   display: flex;
   position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
 }
 
-/*アコーディオンタイトル*/
 .question-box {
   width: 540px;
+  position: relative;
+  padding: 32px;
 }
 
-.question-box {
-  position: relative; /*+マークの位置基準とするためrelative指定*/
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: normal;
+.qsbox-1 {
+  background-color: #ffffd2;
+}
+.qsbox-2 {
+  background-color: #fbf3d8;
+}
+.qsbox-3 {
+  background-color: #008cd7;
+}
+.question-title {
+  color: #010101;
+}
+
+.qs-img-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.qs-img-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: auto;
+  object-fit: contain;
 }
 
 .accordion-icon {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 32px;
+  right: 32px;
 }
 
-/*アコーディオンで現れるエリア*/
+/* answer-box */
 .answer-box {
   max-width: 0;
   overflow: hidden;
-  background: #f3f3f3;
+  background: #ffffff;
   transition: max-width 0.5s ease-out;
   white-space: nowrap;
 }
@@ -209,8 +240,17 @@ a {
 }
 
 .answer-text-container {
-  width: 540px; /* 最終的な横幅を固定 */
-  white-space: normal; /* 内側のテキストは通常通り改行させる */
+  width: 540px;
+  white-space: normal;
+  padding: 32px;
+
+  p {
+    padding-top: 24px;
+  }
+}
+
+.answer-title {
+  padding-bottom: 32px;
 }
 
 /* 対策パート */

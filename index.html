@@ -43,7 +43,36 @@
     <link rel="stylesheet" href="./public/css/main.css" />
   </head>
 
-  <body>
+  <!-- 最初のローティング -->
+  <!-- 動画中はスクロールできないようクラスを付与 -->
+  <body class="no-scroll">
+    <!-- 1. ローディング画面 -->
+    <div id="loading-screen" class="screen">
+      <video
+        src="./src/video/web-loading.webm"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
+    </div>
+
+    <!-- 2. メイン動画画面 -->
+    <div id="intro-video-screen" class="screen is-hidden">
+      <video
+        id="intro-video"
+        src="./src/video/firstview.webm"
+        muted
+        playsinline
+      ></video>
+    </div>
+
+    <!-- 3. 動画終了後に見せるファーストビュー（高さ100vh） -->
+    <section id="hero-section">
+      <h1 class="title">となりの、デカくて不器用なヤツ</h1>
+      <img src="./src/img/common/mv_illust.png" alt="" class="bottom-image" />
+    </section>
+
     <!-- ヘッダー -->
     <div class="header">
       <button
@@ -62,25 +91,31 @@
       <nav id="fade-menu" class="nav-fade" aria-hidden="true">
         <div class="nav-fade__bg"></div>
         <div class="nav-fade__wrapper">
-          <p>となりの、デカくて不器用なヤツ</p>
+          <p id="nav-fade__titile">となりの、デカくて不器用なヤツ</p>
           <p>top</p>
           <ul class="nav-fade__list">
             <li class="nav-fade__item">
-              <a href="#" class="nav-fade__link">はじめに</a>
+              <a href="#heading_introduction" class="nav-fade__link"
+                >はじめに</a
+              >
             </li>
             <li class="nav-fade__item">
-              <a href="#" class="nav-fade__link">ヒグマってどんな動物？</a>
+              <a href="#heading_how_is_bear" class="nav-fade__link"
+                >ヒグマってどんな動物？</a
+              >
             </li>
             <li class="nav-fade__item">
-              <a href="#" class="nav-fade__link">人のすぐそばで暮らすヒグマ</a>
+              <a href="#heading_bear_and_human" class="nav-fade__link"
+                >人のすぐそばで暮らすヒグマ</a
+              >
             </li>
             <li class="nav-fade__item">
-              <a href="#" class="nav-fade__link"
+              <a href="#heading_measures" class="nav-fade__link"
                 >私たちが被害に遭わないために</a
               >
             </li>
             <li class="nav-fade__item">
-              <a href="#" class="nav-fade__link"
+              <a href="#heading_coexistence" class="nav-fade__link"
                 >北海道で私たちとヒグマが共生してくために</a
               >
             </li>
@@ -110,11 +145,7 @@
 
     <!-- メインコンテンツ -->
     <main>
-      <div class="c-mv">
-        <img src="./src/img/common/mv.png" alt="" />
-      </div>
-
-      <div class="c-canvas-wrapper">
+      <div class="c-canvas-wrapper" id="heading_introduction">
         <div
           class="c-canvas"
           data-text="はじめに"
@@ -195,7 +226,7 @@
         </div>
       </div>
 
-      <div class="c-canvas-wrapper">
+      <div class="c-canvas-wrapper" id="heading_how_is_bear">
         <div
           class="c-canvas"
           data-text="ヒグマって&#10;どんな動物？"
@@ -485,7 +516,7 @@
         </div>
       </div>
 
-      <div class="c-canvas-wrapper">
+      <div class="c-canvas-wrapper" id="heading_bear_and_human">
         <div
           class="c-canvas"
           data-text="人のすぐそばで&#10;くらすヒグマ"
@@ -581,16 +612,16 @@
                     A:生息数が増えて、ヒグマの住む場所がなくなったといったシンプルな理由ではなく、いくつもの複合的な要因があります。
                   </h6>
                   <p>
-                    晩夏はもともとエサが不足しやすい季節でヒグマがエサを探し回る範囲を広げて市街地に出没しやすい季節です
+                    晩夏はもともとエサが不足しやすい季節でヒグマがエサを探し回る範囲を広げて市街地に出没しやすい季節です。
                   </p>
                   <p>
-                    時間をかけて徐々に定住していったメスグマや独り立ちのために遠くへ移動している最中に市街地に出てしまった若ぐまが出没しやすいです
+                    時間をかけて徐々に定住していったメスグマや独り立ちのために遠くへ移動している最中に市街地に出てしまった若ぐまが出没しやすいです。
                   </p>
                   <p>
-                    生ごみやコンポスター、畑などに捨てられた規格外の農作物など人為的な誘因物がヒグマに魅力的な場所だと学習させている
+                    生ごみやコンポスター、畑などに捨てられた規格外の農作物など人為的な誘因物がヒグマに魅力的な場所だと学習させてしまったことも出没の要因の一つです。
                   </p>
                   <p>
-                    森林近くの果樹園や農地にはヒグマが利用できるエサがたくさんあります
+                    森林近くの果樹園や農地にはヒグマが利用できるエサがたくさんあります。
                   </p>
                 </div>
               </div>
@@ -681,7 +712,7 @@
         </ul>
       </div>
 
-      <div class="c-canvas-wrapper">
+      <div class="c-canvas-wrapper" id="heading_measures">
         <div
           class="c-canvas"
           data-text="私たちが被害に&#10;あわないために"
@@ -718,6 +749,9 @@
                 </p>
                 <p>
                   また、近距離まで接近してしまった最悪の場合に備えて、撃退できる道具を持つことが有効です。
+                </p>
+                <p>
+                  左側の道具をクリックして、それぞれの使い方を確認してみましょう。
                 </p>
               </div>
               <img src="./src/img/common/memo.png" alt="" />
@@ -785,7 +819,7 @@
       </div>
 
       <!-- コンテナ4 -->
-      <div class="pin-container4">
+      <div class="pin-container4" id="heading_coexistence">
         <div class="bg-wrapper">
           <img src="./src/img/common/zoning-measure.png" alt="" />
         </div>
@@ -811,16 +845,17 @@
           </p>
           <p>
             国や北海道はこれらの取り組みを通して、北海道におけるヒグマの種の保全と被害の最小化の両立を目指しています。
-            では、具体的な対策を下のボタンから見てみましょう。
           </p>
         </div>
       </div>
 
       <div class="child-intro">
-        <h3>くわしく知りたい方はこちら</h3>
-        <p>
-          このページでは載せ切れないヒグマについての詳しい情報を詳しく解説します。
-        </p>
+        <div class="child-intro-title">
+          <h3>くわしく知りたい方はこちら</h3>
+          <p>
+            このページでは載せ切れないヒグマについての詳しい情報を詳しく解説します。
+          </p>
+        </div>
         <div class="child-page-wrapper">
           <div class="child-page-block">
             <img
@@ -829,7 +864,7 @@
               alt=""
             />
             <div class="child-page-text-content">
-              <h5>データで見るヒグマとの関わり</h5>
+              <h6>データで見るヒグマとの関わり</h6>
               <p>
                 私たちの暮らしのすぐそばに生息するヒグマ。近年、目撃情報や出没件数の増加がニュースを賑わせていますが、実際のところ何が起きているのでしょうか。
               </p>
@@ -847,7 +882,7 @@
               alt=""
             />
             <div class="child-page-text-content">
-              <h5>「北海道ヒグマ管理計画」をわかりやすく</h5>
+              <h6>「北海道ヒグマ管理計画」をわかりやすく</h6>
               <p>
                 被害増加を受けて見直される「北海道ヒグマ管理計画」。
                 北海道が目指すこれからのヒグマ対策を分かりやすく紐解きます。
@@ -876,11 +911,11 @@
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="./src/js/accordion.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="./src/js/gsap.js"></script>
     <script type="module" src="./src/js/main.js"></script>
     <script src="./src/js/bg-p5.js"></script>
+    <script src="./src/js/accordion.js"></script>
   </body>
 </html>

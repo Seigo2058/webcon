@@ -7,10 +7,10 @@ $(".accordion-container").on("click", function () {
 
   if (findElm.hasClass("is-open")) {
     //タイトル要素にクラス名closeがあれば
-    findIcon.attr("src", "../img/common/accordion-open.png");
+    findIcon.attr("src", "./src/img/common/accordion-open.png");
   } else {
     //それ以外は
-    findIcon.attr("src", "../img/common/accordion-close.png");
+    findIcon.attr("src", "./src/img/common/accordion-close.png");
   }
 });
 

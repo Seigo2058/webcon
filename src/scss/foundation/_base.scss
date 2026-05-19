@@ -17,6 +17,78 @@ a {
   color: inherit;
 }
 
+/* =========================================
+   スクロール制御用
+========================================= */
+body.no-scroll {
+  overflow: hidden; /* スクロールを禁止 */
+}
+
+/* =========================================
+   動画オーバーレイ（画面全体に固定して最前面へ）
+========================================= */
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 9999; /* コンテンツより常に手前に表示 */
+
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================
+   ファーストビュー（動画終了後に表示される画面）
+========================================= */
+#hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 画面いっぱいの高さを確保 */
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  z-index: 2;
+  width: 100%;
+}
+
+.bottom-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
 /* ===========================
          コンテナ1・2・3 共通スタイル
       =========================== */
@@ -171,7 +243,6 @@ a {
 .accordion-area li {
   height: 664px;
   width: auto;
-  border-radius: 16px;
 }
 
 .accordion-container {
@@ -180,6 +251,7 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 16px;
+  overflow: hidden;
 }
 
 .question-box {
@@ -268,6 +340,7 @@ a {
 
 .our-measures h3 {
   text-align: center;
+  padding: 10% 0 5% 0;
 }
 
 .measure-contents {
@@ -358,6 +431,21 @@ a {
   height: 100%;
   padding: 80px 32px 32px 32px;
   z-index: 1;
+
+  h5 {
+    color: #4a3e3e;
+    padding-bottom: 16px;
+  }
+
+  h6 {
+    text-align: left;
+  }
+
+  p {
+    padding-bottom: 16px;
+    text-align: left;
+    line-height: 20px;
+  }
 }
 
 .memo-content img {
@@ -368,6 +456,36 @@ a {
   height: 100%;
   object-fit: contain;
   z-index: 0;
+}
+
+/* アニメーションを滑らかにする設定 */
+.tool-pictures img {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    z-index 0.3s ease;
+}
+
+/* pocketとbag以外の道具にカーソルポインターを設定 */
+.tool-pictures img:not(#tool-pocket, #tool-bag) {
+  cursor: pointer;
+}
+
+/* hoverしたとき、道具のimgが少し大きくなる */
+.tool-pictures img:not(#tool-pocket, #tool-bag):hover {
+  transform: scale(1.1);
+}
+
+/* クリックされたとき、他の道具とバッグは透明度が下がる */
+/* (.is-activeが付与されている時、.activeが付いていないimgを透過) */
+.tool-pictures.is-active img:not(.active) {
+  opacity: 0.3;
+}
+
+/* imgがバッグの手前に出て、大きくなる */
+.tool-pictures img.active {
+  transform: scale(1.5) !important; /* hoverのscaleを上書き */
+  z-index: 10 !important; /* 他のz-index(1〜3)より大きい値を指定して最前面へ */
 }
 
 /* ゴミ出しパート */
@@ -421,11 +539,10 @@ a {
   width: 100%;
   height: 100vh;
   display: flex;
-  align-items: flex-end; /* 画像を一番下に寄せる */
+  align-items: flex-end;
   z-index: 1;
 }
 
-/* ラッパーの中の画像設定 */
 .bg-wrapper img {
   width: 100%;
   height: auto;
@@ -443,6 +560,7 @@ a {
 
 .text-wrapper4 h3 {
   padding-top: 40vh;
+  color: var(--c-text);
 }
 
 .text-wrapper4 p {
@@ -452,6 +570,19 @@ a {
 .child-intro {
   width: 100%;
   height: 100vh;
+}
+
+.child-intro-title {
+  padding-top: 20vh;
+  h3 {
+    color: var(--c-text);
+    padding-bottom: 16px;
+  }
+
+  p {
+    color: var(--c-text);
+    line-height: 24px;
+  }
 }
 
 .child-page-wrapper {
@@ -479,18 +610,20 @@ a {
 }
 
 .child-page-text-content {
-  padding: 32px 128px 32px 32px;
-}
-.child-page-text-content p {
-  padding-top: 16px;
+  padding: 32px 32px 32px 32px;
+
+  h6,
+  p {
+    text-align: left;
+  }
 }
 
 .child-page-btn {
   position: absolute;
-  bottom: 32px;
-  right: 32px;
-  width: 50px;
-  height: 50px;
+  bottom: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
 }
 
 /* フッター */

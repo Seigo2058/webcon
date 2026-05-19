@@ -1,8 +1,42 @@
 // スクロールリセット
-// history.scrollRestoration = "manual";
-// window.addEventListener("beforeunload", function () {
-//   window.scrollTo(0, 0);
-// });
+history.scrollRestoration = "manual";
+window.addEventListener("beforeunload", function () {
+  window.scrollTo(0, 0);
+});
+
+// ローディング画面と動画の制御
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingScreen = document.getElementById("loading-screen");
+  const introVideoScreen = document.getElementById("intro-video-screen");
+  const introVideo = document.getElementById("intro-video");
+  const body = document.body;
+
+  // ローディング動画の最低表示時間
+  const minLoadingTime = 3000;
+  const startTime = Date.now();
+
+  // 1. 読み込み完了時
+  window.addEventListener("load", () => {
+    const loadTime = Date.now() - startTime;
+    const delay = Math.max(minLoadingTime - loadTime, 0);
+
+    setTimeout(() => {
+      // ローディングを消して、メイン動画を表示・再生
+      loadingScreen.classList.add("is-hidden");
+      introVideoScreen.classList.remove("is-hidden");
+      introVideo.play();
+    }, delay);
+  });
+
+  // 2. メイン動画の再生が終了した時
+  introVideo.addEventListener("ended", () => {
+    // メイン動画をフェードアウト（背面の#hero-sectionが見えるようになる）
+    introVideoScreen.classList.add("is-hidden");
+
+    // スクロール禁止を解除し、下部のコンテンツへ移動可能にする
+    body.classList.remove("no-scroll");
+  });
+});
 
 // fade-script.js
 document.addEventListener("DOMContentLoaded", () => {
@@ -269,4 +303,72 @@ item10.addEventListener("click", () => {
   gokan.style.bottom = `5%`;
 
   gokan.classList.add("bento-is-show");
+});
+
+// ヒグマ対策の道具クリックイベント
+document.addEventListener("DOMContentLoaded", () => {
+  const toolsContainer = document.querySelector(".tool-pictures");
+  const tools = document.querySelectorAll(".tool-pictures img");
+  const memoTextContent = document.querySelector(".memo-text-content");
+
+  // 各道具に対応する説明テキストのデータ（必要に応じてテキストを変更してください）
+  const toolData = {
+    "tool-bell": {
+      title: "熊よけ鈴",
+      text: "<p>ヒグマに襲われた時、クマにスプレーを吹きかけ、その攻撃から身を守る道具です。北米では、90％以上の確率でヒグマ攻撃を止めた効果があります。</p><p>成分は主にカプサイシン（唐辛子エキス）です。クマの目、鼻、口の粘膜に強烈な刺激を与えることで、一時的に視力と呼吸機能を奪い、その隙に逃げるための道具です。</p>",
+    },
+    "tool-spray": {
+      title: "クマスプレー",
+      text: "<p>ヒグマに襲われた時、クマにスプレーを吹きかけ、その攻撃から身を守る道具です。北米では、90％以上の確率でヒグマ攻撃を止めた効果があります。</p><p>成分は主にカプサイシン（唐辛子エキス）です。クマの目、鼻、口の粘膜に強烈な刺激を与えることで、一時的に視力と呼吸機能を奪い、その隙に逃げるための道具です。</p>",
+    },
+    "tool-bearhorn": {
+      title: "ベアホーン",
+      text: "<p>ベアホーンは、ガスや手動の力で強烈な高周波音を出し、クマにこちらの存在を知らせたり、驚かせて遠ざけたりするための道具です。</p><p>風の強い日や川の近くなど、音が消されやすい場所で有効です。</p>",
+    },
+    "tool-handy-radio": {
+      title: "携帯ラジオ",
+      text: "<p>人の話し声などを流すことで、ヒグマに警戒させます。</p><p>周囲に人がいることをアピールするのに役立ちます。</p>",
+    },
+    // 初期状態（リセット時用）のテキスト
+    default: {
+      title: "もしもに備える道具",
+      text: "<p>私たちが被害を受けないためには、まずはヒグマに私たちの存在を知らせることが重要です。</p><p>また、近距離まで接近してしまった最悪の場合に備えて、撃退できる道具を持つことが有効です。</p>",
+    },
+  };
+
+  tools.forEach((tool) => {
+    // pocket と bag はクリックイベントの対象外にする
+    if (tool.id === "tool-pocket" || tool.id === "tool-bag") return;
+
+    tool.addEventListener("click", (e) => {
+      e.stopPropagation(); // 【推測】親要素へのクリックイベント伝播を防ぎ、意図せぬリセットを防止
+
+      const isAlreadyActive = tool.classList.contains("active");
+
+      // 一旦すべてのツールのアクティブ状態を解除
+      tools.forEach((t) => t.classList.remove("active"));
+      toolsContainer.classList.remove("is-active");
+
+      if (!isAlreadyActive) {
+        // クリックされたツールをアクティブにする
+        tool.classList.add("active");
+        toolsContainer.classList.add("is-active");
+
+        // 対応するテキストに切り替える
+        const data = toolData[tool.id];
+        if (data) {
+          memoTextContent.innerHTML = `<h5>${data.title}</h5>${data.text}`;
+        }
+      } else {
+        // すでにアクティブなものを再度クリックした場合は、初期状態に戻す
+        memoTextContent.innerHTML = `<h5>${toolData["default"].title}</h5>${toolData["default"].text}`;
+      }
+    });
+  });
+
+  document.addEventListener("click", () => {
+    tools.forEach((t) => t.classList.remove("active"));
+    toolsContainer.classList.remove("is-active");
+    memoTextContent.innerHTML = `<h5>${toolData["default"].title}</h5>${toolData["default"].text}`;
+  });
 });

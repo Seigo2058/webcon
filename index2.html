@@ -1,0 +1,241 @@
+﻿<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      データで見る、ヒグマと人の関わり - となりの、デカくて不器用なヤツ
+    </title>
+
+    <!-- Adobe Fonts -->
+    <script>
+      (function (d) {
+        var config = {
+            kitId: "boo4wwn",
+            scriptTimeout: 3000,
+            async: true,
+          },
+          h = d.documentElement,
+          t = setTimeout(function () {
+            h.className =
+              h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive";
+          }, config.scriptTimeout),
+          tk = d.createElement("script"),
+          f = false,
+          s = d.getElementsByTagName("script")[0],
+          a;
+        h.className += " wf-loading";
+        tk.src = "https://use.typekit.net/" + config.kitId + ".js";
+        tk.async = true;
+        tk.onload = tk.onreadystatechange = function () {
+          a = this.readyState;
+          if (f || (a && a != "complete" && a != "loaded")) return;
+          f = true;
+          clearTimeout(t);
+          try {
+            Typekit.load(config);
+          } catch (e) {}
+        };
+        s.parentNode.insertBefore(tk, s);
+      })(document);
+    </script>
+
+    <!-- JS and CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
+    <link rel="stylesheet" href="./public/css/main.css" />
+  </head>
+
+  <body>
+    <!-- ヘッダー -->
+    <div class="header">
+      <button
+        class="hamburger-fade"
+        aria-label="メニュー"
+        aria-controls="fade-menu"
+        aria-expanded="false"
+      >
+        <div class="hamburger-fade__wrapper">
+          <span class="hamburger-fade__line"></span>
+          <span class="hamburger-fade__line"></span>
+          <span class="hamburger-fade__line"></span>
+        </div>
+      </button>
+
+      <nav id="fade-menu" class="nav-fade" aria-hidden="true">
+        <div class="nav-fade__bg"></div>
+        <div class="nav-fade__wrapper">
+          <p id="nav-fade__titile">となりの、デカくて不器用なヤツ</p>
+          <p>top</p>
+          <ul class="nav-fade__list">
+            <li class="nav-fade__item">
+              <a href="#heading_introduction" class="nav-fade__link"
+                >はじめに</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#heading_how_is_bear" class="nav-fade__link"
+                >ヒグマってどんな動物？</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#heading_bear_and_human" class="nav-fade__link"
+                >人のすぐそばで暮らすヒグマ</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#heading_measures" class="nav-fade__link"
+                >私たちが被害に遭わないために</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#heading_coexistence" class="nav-fade__link"
+                >北海道で私たちとヒグマが共生してくために</a
+              >
+            </li>
+          </ul>
+          <p>detail</p>
+          <ul class="nav-fade__list">
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link"
+                >データで見るヒグマ、ヒグマと人の関わり</a
+              >
+            </li>
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link"
+                >北海道ヒグマ管理計画をわかりやすく解説！</a
+              >
+            </li>
+          </ul>
+          <p>other</p>
+          <ul class="nav-fade__list">
+            <li class="nav-fade__item">
+              <a href="#" class="nav-fade__link">参考文献</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main>
+      <div class="child-title">
+        <div class="child-wrapper">
+          <h3>データで見る、 ヒグマと人の関わり</h3>
+          <img
+            class="child-title_img"
+            src="./src/img/common/bear-graph.png"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="child-wrapper">
+        <h4>実際ヒグマの被害は増えているの？</h4>
+        <p>
+          「最近、ヒグマのニュースが増えた気がする」
+          そう感じている方は多いはずです。
+        </p>
+        <p>
+          でも、それは単なるイメージではありません。
+          北海道が発表した最新の調査データ（令和6年更新）を紐解くと、私たちが想像している以上にヒグマと人間の距離は急速に変化していることが分かります
+        </p>
+        <p>
+          1990年を境に、一体何が起きているのか？
+          個体数、農業被害、そして人身被害——。
+          溢れる情報の中で、まずは事実という名の地図を広げてみましょう。
+        </p>
+      </div>
+
+      <div class="child-wrapper">
+        <h6>ヒグマが増えている３つの要素</h6>
+        <div>
+          <img
+            src="./src/img/common/improve_1.png"
+            alt="ヒグマが増えている要素1"
+          />
+          <div>
+            <p>春グマ駆除制度廃止後から捕獲数は単調増加している</p>
+            <p>
+              1989年の春グマ駆除制度廃止を境に、ヒグマの捕獲状況が大きく変化したことが読み取れます。
+              かつて主流だった「狩猟」による捕獲は減少・低迷する一方で、被害防止等を目的とした。
+              「許可捕獲」が2000年代以降に急増しており、近年の捕獲数は過去最多水準に達しています。
+            </p>
+          </div>
+        </div>
+        <div>
+          <img
+            src="./src/img/common/improve_2.png"
+            alt="ヒグマが増えている要素2"
+          />
+          <div>
+            <p>
+              1970年代後半から家畜被害は低い一方、農業被害額は急増しており対照的な推移
+            </p>
+            <p>
+              かつて主流だった「狩猟」による捕獲は減少・低迷する一方で、被害防止等を目的とした。
+            </p>
+          </div>
+        </div>
+        <div>
+          <img
+            src="./src/img/common/improve_3.png"
+            alt="ヒグマが増えている要素3"
+          />
+          <div>
+            <p>
+              春グマ駆除廃止後、負傷者を中心に人身被害は増加し特に直近10年でその傾向が顕著
+            </p>
+            <p>
+              春グマ駆除制度の廃止以降、人身被害は増加傾向に転じています。
+              特に2010年代半ばから負傷者数が目立って増えており、2021年には過去最多を記録しました。
+              近年は死亡・負傷ともに高い水準で推移しており、被害がより深刻化している状況が読み取れます。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="child-wrapper">
+        <h4>地域が変わればヒグマの出没の原因も変わる</h4>
+        <p>
+          北海道のヒグマ被害といっても広大な島で起こる被害の要因は地域によって異なります。
+        </p>
+        <p>
+          北海道のヒグマ管理は、保護から管理の時代へと移り変わっています。
+          1990年代以降の個体数推定、捕獲数、そして被害状況の推移を比較すると、ヒグマの分布拡大とともに、私たちの生活への影響が顕著に増大していることがわかります。
+          特に人身被害や農業被害のデータが示す「加速するリスク」について、北海道の公表資料をもとに整理しました。
+        </p>
+        <p>
+          1990年を境に、一体何が起きているのか？
+          個体数、農業被害、そして人身被害——。
+          溢れる情報の中で、まずは事実という名の地図を広げてみましょう。
+        </p>
+
+        <h6>渡島半島地域個体群の被害</h6>
+        <p>
+          函館市などがある渡島半島は狭い半島状の地形に急峻な山地帯が海岸線まで迫っている地域が多くあります。そのため、人が住む住宅地や農地とヒグマが住む山の距離が近く、ヒグマが出没しやすい環境にあります。
+        </p>
+        <img src="" alt="" />
+      </div>
+
+      <footer>
+        <img
+          class="returntotop"
+          src="./src/img/common/returntotop.png"
+          alt=""
+        />
+        <div class="footer-text">
+          <p>となりの、デカくて不器用なやつ</p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="./src/js/gsap.js"></script>
+    <script type="module" src="./src/js/main.js"></script>
+    <script src="./src/js/bg-p5.js"></script>
+    <script src="./src/js/accordion.js"></script>
+  </body>
+</html>

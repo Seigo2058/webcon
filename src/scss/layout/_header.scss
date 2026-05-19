@@ -97,12 +97,19 @@
   width: 100%;
   height: 100%;
   padding: 40px 0 0 65vw;
+  text-align: left;
+}
+
+#nav-fade__title {
+  font-size: 24px;
+  color: #4a3217;
 }
 
 .nav-fade__list {
   margin: 0;
   padding: 0;
   list-style: none;
+  margin-top: 36px;
 }
 
 .nav-fade__item {
@@ -137,6 +144,7 @@
   font-size: 20px;
   text-decoration: none;
   transition: color 0.3s ease;
+  padding: 8px;
 }
 
 .nav-fade__link:hover {

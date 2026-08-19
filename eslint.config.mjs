@@ -10,17 +10,26 @@ export default defineConfig([
     languageOptions: { globals: globals.browser },
   },
   {
-    globals: {
-      setup: "readonly",
-      draw: "readonly",
-      windowResized: "readonly",
-      createCanvas: "readonly",
-      windowWidth: "readonly",
-      windowHeight: "readonly",
-      fill: "readonly",
-      strokeWeight: "readonly",
-      circle: "readonly",
-      resizeCanvas: "readonly",
+    languageOptions: {
+      globals: {
+        // CDNから読み込んでいるライブラリ（index.html参照）
+        gsap: "readonly",
+        ScrollTrigger: "readonly",
+        p5: "readonly",
+        $: "readonly",
+        jQuery: "readonly",
+        // p5.jsのグローバルモード用
+        setup: "readonly",
+        draw: "readonly",
+        windowResized: "readonly",
+        createCanvas: "readonly",
+        windowWidth: "readonly",
+        windowHeight: "readonly",
+        fill: "readonly",
+        strokeWeight: "readonly",
+        circle: "readonly",
+        resizeCanvas: "readonly",
+      },
     },
     rules: {
       "no-unused-vars": [

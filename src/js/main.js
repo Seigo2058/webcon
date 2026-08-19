@@ -11,31 +11,179 @@ document.addEventListener("DOMContentLoaded", () => {
   const introVideo = document.getElementById("intro-video");
   const body = document.body;
 
+  // 要素が欠けていてもスクロールロックだけは必ず外す（ページが操作不能になるのを防ぐ）
+  if (!loadingScreen || !introVideoScreen || !introVideo) {
+    body.classList.remove("no-scroll");
+    return;
+  }
+
   // ローディング動画の最低表示時間
   const minLoadingTime = 3000;
+  // loadイベントを待つ上限。外部CDN（Adobe Fonts / p5.js など）が
+  // 遅い・落ちている場合でも、ここで必ず先へ進める
+  const maxLoadingTime = 6000;
+  // メイン動画が「再生できる状態」になるのを待つ上限（ページ表示からの絶対値）。
+  // ここを過ぎたらメイン動画は諦めて本編へ進む
+  const maxIntroReadyTime = 9000;
+  // 再生が始まった後、映像が進まなくなった場合に見切りをつけるまでの時間
+  const introStallTime = 4000;
+  // 万一 ended が飛んでこない場合の最終保険
+  const maxIntroPlayTime = 20000;
+
   const startTime = Date.now();
+  const elapsed = () => Date.now() - startTime;
 
-  // 1. 読み込み完了時
-  window.addEventListener("load", () => {
-    const loadTime = Date.now() - startTime;
-    const delay = Math.max(minLoadingTime - loadTime, 0);
+  let loadingFinished = false;
+  let introFinished = false;
+  let siteRevealed = false;
 
-    setTimeout(() => {
-      // ローディングを消して、メイン動画を表示・再生
-      loadingScreen.classList.add("is-hidden");
-      introVideoScreen.classList.remove("is-hidden");
-      introVideo.play();
-    }, delay);
-  });
+  let introTimer = null;
+  let introTimerMs = null;
+  let stallWatcher = null;
 
-  // 2. メイン動画の再生が終了した時
-  introVideo.addEventListener("ended", () => {
-    // メイン動画をフェードアウト（背面の#hero-sectionが見えるようになる）
+  // オーバーレイを全て外して本編を見せる（何度呼ばれても安全）
+  const revealSite = () => {
+    if (siteRevealed) return;
+    siteRevealed = true;
+
+    clearTimeout(introTimer);
+    clearInterval(stallWatcher);
+
+    loadingScreen.classList.add("is-hidden");
     introVideoScreen.classList.add("is-hidden");
 
     // スクロール禁止を解除し、下部のコンテンツへ移動可能にする
     body.classList.remove("no-scroll");
+  };
+
+  // メイン動画の再生が終了した時（またはこれ以上待てない時）
+  const finishIntro = () => {
+    if (introFinished) return;
+    introFinished = true;
+
+    // ローディング表示中に動画のエラーが判明した場合は、すぐに本編を出さず
+    // 最低表示時間まで待つ（finishLoading が必ず呼ばれるので固まることはない）
+    if (loadingFinished) revealSite();
+  };
+
+  introVideo.addEventListener("ended", finishIntro);
+  introVideo.addEventListener("error", finishIntro);
+
+  // タブが非表示の間、ブラウザは動画の読み込みも再生も止めてしまう。
+  // その間タイマーを進めると「戻ってきたら既に終わっていた」ことになるので、
+  // 表示されている間だけ待ち時間を数える
+  const armIntroTimer = (ms) => {
+    clearTimeout(introTimer);
+    introTimerMs = ms;
+    if (document.hidden) return; // 表示された時に張り直す
+    introTimer = setTimeout(finishIntro, ms);
+  };
+
+  document.addEventListener("visibilitychange", () => {
+    if (introFinished || introTimerMs === null) return;
+
+    if (document.hidden) {
+      clearTimeout(introTimer);
+      return;
+    }
+
+    // 戻ってきたら読み込み・再生を仕切り直して、待ち時間も測り直す
+    if (introVideo.paused) {
+      const p = introVideo.play();
+      if (p) p.catch(finishIntro);
+    }
+    armIntroTimer(introTimerMs);
   });
+
+  // 再生は始まったのに映像が進まない（バッファ切れ・デコード失敗）場合の監視。
+  // 非表示タブではsetIntervalが間引かれるため、経過時間は実時間で測る
+  const watchForStall = () => {
+    let lastTime = introVideo.currentTime;
+    let lastProgressAt = Date.now();
+
+    clearInterval(stallWatcher);
+    stallWatcher = setInterval(() => {
+      if (introFinished) return;
+
+      // 非表示中は止まって当然なので数えない
+      if (document.hidden || introVideo.currentTime > lastTime) {
+        lastTime = introVideo.currentTime;
+        lastProgressAt = Date.now();
+        return;
+      }
+
+      if (Date.now() - lastProgressAt >= introStallTime) finishIntro();
+    }, 500);
+  };
+
+  // メイン動画を表示して再生する
+  const showIntro = () => {
+    if (introFinished || siteRevealed) return;
+
+    introVideoScreen.classList.remove("is-hidden");
+    loadingScreen.classList.add("is-hidden");
+
+    // 実尺が分かっていればそれを基準に、分からなければ固定値で打ち切る
+    const remaining = Number.isFinite(introVideo.duration)
+      ? (introVideo.duration - introVideo.currentTime) * 1000 + 3000
+      : maxIntroPlayTime;
+    armIntroTimer(remaining);
+
+    // 自動再生がブロックされた場合はPromiseがrejectされる
+    const playPromise = introVideo.play();
+    if (playPromise) playPromise.catch(finishIntro);
+
+    watchForStall();
+  };
+
+  // メイン動画が「再生できる状態」になるまではローディング画面を出したままにする。
+  // 読み込めていないまま切り替えると、真っ黒な画面だけが残ってしまう
+  const startIntro = () => {
+    // HAVE_FUTURE_DATA 以上なら、切り替えた瞬間から映像が出る
+    if (introVideo.readyState >= 3) {
+      showIntro();
+      return;
+    }
+
+    const budget = maxIntroReadyTime - elapsed();
+    if (budget <= 0) {
+      finishIntro(); // 間に合わないのでメイン動画は飛ばす
+      return;
+    }
+
+    introVideo.addEventListener("canplay", showIntro, { once: true });
+    armIntroTimer(budget);
+
+    // 非表示タブなどで読み込みが始まってすらいない場合の再要求
+    if (introVideo.networkState === HTMLMediaElement.NETWORK_EMPTY) {
+      introVideo.load();
+    }
+  };
+
+  // 読み込み完了時（またはmaxLoadingTimeを過ぎた時）
+  const finishLoading = () => {
+    if (loadingFinished) return;
+    loadingFinished = true;
+
+    // 動画が再生できないと既に判明している場合は、メイン動画を飛ばして本編へ
+    if (introFinished) {
+      revealSite();
+      return;
+    }
+
+    startIntro();
+  };
+
+  const scheduleFinishLoading = () => {
+    setTimeout(finishLoading, Math.max(minLoadingTime - elapsed(), 0));
+  };
+
+  if (document.readyState === "complete") {
+    scheduleFinishLoading();
+  } else {
+    window.addEventListener("load", scheduleFinishLoading);
+  }
+  setTimeout(finishLoading, maxLoadingTime);
 });
 
 // fade-script.js

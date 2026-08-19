@@ -1,50 +1,40 @@
 {
-  "name": "omiya",
+  "name": "webcon",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "ヒグマとの共生を伝える静的サイト「となりの、デカくて不器用なヤツ」",
+  "type": "commonjs",
+  "license": "ISC",
+  "author": "",
+  "keywords": [],
   "scripts": {
-    "compile:sass": "npm run build",
-    "build": "node ./node_modules/sass/sass.js src/scss:public/css --style=expanded --no-source-map",
-    "dev": "node ./node_modules/sass/sass.js --watch src/scss:public/css --style=expanded",
+    "build": "sass src/scss:public/css --style=expanded --no-source-map",
+    "dev": "sass --watch src/scss:public/css --style=expanded",
+    "serve": "python3 -m http.server 8000",
+    "lint": "eslint src/js",
+    "format": "prettier --write \"**/*.{html,js,mjs,scss,json,md}\"",
+    "format:check": "prettier --check \"**/*.{html,js,mjs,scss,json,md}\"",
     "start": "npm run dev"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tawosizuku/omiya.git"
+    "url": "git+https://github.com/Seigo2058/webcon.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tawosizuku/omiya/issues"
+    "url": "https://github.com/Seigo2058/webcon/issues"
   },
-  "homepage": "https://github.com/tawosizuku/omiya#readme",
+  "homepage": "https://github.com/Seigo2058/webcon#readme",
+  "directories": {
+    "doc": "docs"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.2.1",
     "globals": "^17.5.0",
     "prettier": "^3.7.4",
     "sass": "^1.94.2"
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "dependencies": {
-    "braces": "^3.0.3",
-    "chokidar": "^4.0.3",
-    "detect-libc": "^1.0.3",
-    "fill-range": "^7.1.1",
-    "immutable": "^5.1.4",
-    "is-extglob": "^2.1.1",
-    "is-glob": "^4.0.3",
-    "is-number": "^7.0.0",
-    "micromatch": "^4.0.8",
-    "node-addon-api": "^7.1.1",
-    "picomatch": "^2.3.1",
-    "readdirp": "^4.1.2",
-    "source-map-js": "^1.2.1",
-    "to-regex-range": "^5.0.1"
-  },
-  "type": "commonjs"
+  }
 }

@@ -1,3 +1,11 @@
+import { initLanguage, mountLanguageSwitch, translate } from "./i18n.js";
+
+// 言語の初期化。以降の処理で例外が出ても影響しないよう、先頭で登録しておく
+document.addEventListener("DOMContentLoaded", () => {
+  mountLanguageSwitch();
+  initLanguage();
+});
+
 // スクロールリセット
 history.scrollRestoration = "manual";
 window.addEventListener("beforeunload", function () {
@@ -458,30 +466,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const toolsContainer = document.querySelector(".tool-pictures");
   const tools = document.querySelectorAll(".tool-pictures img");
   const memoTextContent = document.querySelector(".memo-text-content");
+  const toolDescriptions = document.querySelector(".tool-descriptions");
+  if (!toolsContainer || !memoTextContent) return;
 
-  // 各道具に対応する説明テキストのデータ（必要に応じてテキストを変更してください）
-  const toolData = {
-    "tool-bell": {
-      title: "熊よけ鈴",
-      text: "<p>ヒグマに襲われた時、クマにスプレーを吹きかけ、その攻撃から身を守る道具です。北米では、90％以上の確率でヒグマ攻撃を止めた効果があります。</p><p>成分は主にカプサイシン（唐辛子エキス）です。クマの目、鼻、口の粘膜に強烈な刺激を与えることで、一時的に視力と呼吸機能を奪い、その隙に逃げるための道具です。</p>",
-    },
-    "tool-spray": {
-      title: "クマスプレー",
-      text: "<p>ヒグマに襲われた時、クマにスプレーを吹きかけ、その攻撃から身を守る道具です。北米では、90％以上の確率でヒグマ攻撃を止めた効果があります。</p><p>成分は主にカプサイシン（唐辛子エキス）です。クマの目、鼻、口の粘膜に強烈な刺激を与えることで、一時的に視力と呼吸機能を奪い、その隙に逃げるための道具です。</p>",
-    },
-    "tool-bearhorn": {
-      title: "ベアホーン",
-      text: "<p>ベアホーンは、ガスや手動の力で強烈な高周波音を出し、クマにこちらの存在を知らせたり、驚かせて遠ざけたりするための道具です。</p><p>風の強い日や川の近くなど、音が消されやすい場所で有効です。</p>",
-    },
-    "tool-handy-radio": {
-      title: "携帯ラジオ",
-      text: "<p>人の話し声などを流すことで、ヒグマに警戒させます。</p><p>周囲に人がいることをアピールするのに役立ちます。</p>",
-    },
-    // 初期状態（リセット時用）のテキスト
-    default: {
-      title: "もしもに備える道具",
-      text: "<p>私たちが被害を受けないためには、まずはヒグマに私たちの存在を知らせることが重要です。</p><p>また、近距離まで接近してしまった最悪の場合に備えて、撃退できる道具を持つことが有効です。</p>",
-    },
+  // 初期表示（道具を選んでいない状態）。言語切り替え時に翻訳し直せるよう、
+  // DOMから切り離した複製として保持する
+  const defaultBlock = memoTextContent.cloneNode(true);
+
+  // 現在選択中の道具。null は初期表示
+  let activeToolId = null;
+
+  const render = () => {
+    const source = activeToolId
+      ? toolDescriptions?.querySelector(`[data-tool="${activeToolId}"]`)
+      : defaultBlock;
+    memoTextContent.innerHTML = source ? source.innerHTML : "";
   };
 
   tools.forEach((tool) => {
@@ -489,7 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tool.id === "tool-pocket" || tool.id === "tool-bag") return;
 
     tool.addEventListener("click", (e) => {
-      e.stopPropagation(); // 【推測】親要素へのクリックイベント伝播を防ぎ、意図せぬリセットを防止
+      e.stopPropagation(); // 親要素へのクリックイベント伝播を防ぎ、意図せぬリセットを防止
 
       const isAlreadyActive = tool.classList.contains("active");
 
@@ -501,22 +500,28 @@ document.addEventListener("DOMContentLoaded", () => {
         // クリックされたツールをアクティブにする
         tool.classList.add("active");
         toolsContainer.classList.add("is-active");
-
-        // 対応するテキストに切り替える
-        const data = toolData[tool.id];
-        if (data) {
-          memoTextContent.innerHTML = `<h5>${data.title}</h5>${data.text}`;
-        }
+        activeToolId = tool.id;
       } else {
         // すでにアクティブなものを再度クリックした場合は、初期状態に戻す
-        memoTextContent.innerHTML = `<h5>${toolData["default"].title}</h5>${toolData["default"].text}`;
+        activeToolId = null;
       }
+      render();
     });
   });
 
-  document.addEventListener("click", () => {
+  document.addEventListener("click", (e) => {
+    // 言語の切り替えは道具の選択とは無関係なので、選択を解除しない
+    if (e.target.closest(".lang-switch")) return;
+
     tools.forEach((t) => t.classList.remove("active"));
     toolsContainer.classList.remove("is-active");
-    memoTextContent.innerHTML = `<h5>${toolData["default"].title}</h5>${toolData["default"].text}`;
+    activeToolId = null;
+    render();
+  });
+
+  // 言語が切り替わったら、切り離してある初期表示も翻訳して描き直す
+  document.addEventListener("i18n:change", (e) => {
+    translate(defaultBlock, e.detail.dict);
+    render();
   });
 });

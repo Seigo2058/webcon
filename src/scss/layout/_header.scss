@@ -165,3 +165,78 @@
     padding-left: 40px;
   }
 }
+
+/* 言語切り替え（Figma: p-header__switch / 148x60）*/
+.lang-switch {
+  position: fixed;
+  top: 20px; /* ハンバーガー(60px角)と天地を揃える */
+  right: 100px; /* 画面右20px + ハンバーガー60px + 間隔20px */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 148px;
+  height: 60px;
+  /* Figmaは枠線の内側から余白8pxを取っているため、線の2pxを差し引く */
+  padding: 6px;
+  border: 2px solid #373635;
+  border-radius: 1000px;
+  background: transparent;
+  transition: border-color 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+
+  button {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 100%;
+    padding: 4px;
+    border: 0;
+    border-radius: 1000px;
+    background: transparent;
+    color: #373635;
+    font-family: var(--f2);
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+
+    &.is-active {
+      background-color: #373635;
+      color: #fff;
+    }
+
+    &:disabled {
+      cursor: progress;
+    }
+  }
+
+  /* 取得中は操作できないことを見た目でも示す */
+  &.is-loading {
+    opacity: 0.6;
+  }
+}
+
+/* ナビゲーションを開いている間は、ハンバーガーに合わせて白へ反転させる */
+.header:has(.nav-fade.active) .lang-switch {
+  border-color: #fff;
+
+  button {
+    color: #fff;
+  }
+
+  button.is-active {
+    background-color: #fff;
+    color: #373635;
+  }
+}
+
+/* JSが参照するだけの要素。レイアウトに影響させない */
+.tool-descriptions[hidden] {
+  display: none !important;
+}

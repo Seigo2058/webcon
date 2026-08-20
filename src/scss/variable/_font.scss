@@ -3,24 +3,25 @@
 :root {
   --f1: rocknroll-one, sans-serif;
   --f2: toppan-bunkyu-midashi-go-std, sans-serif;
+  --f3: ads-strong, sans-serif;
 
   text-align: center;
 }
 
 h2 {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 40px;
   color: #fff;
 }
 
 h3 {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 28px;
   color: #fff;
 }
 
 h4 {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 24px;
   color: #fff;
 }

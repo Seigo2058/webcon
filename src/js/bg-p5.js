@@ -27,9 +27,21 @@ document.fonts.ready.then(() => {
     const canvasObserver = new IntersectionObserver(showCanvas, options);
     canvasObserver.observe(canvas);
 
-    let canvasText = canvas.dataset.text;
     let canvasColor = canvas.dataset.color;
     let canvasDiameter = canvas.dataset.diameter;
+
+    // 見出しに添える装飾画面（data-imageがある見出しだけ）
+    // Figmaの実寸: 1920px幅の画面で 568x701、左端から-268px、円の中心より189px上
+    const DECOR = {
+      width: 568,
+      height: 701,
+      left: -268,
+      topFromCenter: -189,
+      // この幅までは実寸。それより狭い画面では画面幅に比例して縮める
+      fullScaleWidth: 1280,
+    };
+    const decorSrc = canvas.dataset.image;
+    let decorImg = null;
 
     // 1. スケッチの設計図となる関数を定義
     const mySketch = (p) => {
@@ -37,10 +49,37 @@ document.fonts.ready.then(() => {
       p.setup = () => {
         // 2. p5の関数は p. をつけて呼び出す
         p.createCanvas(p.windowWidth, p.windowHeight);
+
+        // 読み込みに失敗しても見出し自体は描画を続ける
+        if (decorSrc) {
+          p.loadImage(
+            decorSrc,
+            (img) => {
+              decorImg = img;
+            },
+            () => {
+              decorImg = null;
+            },
+          );
+        }
       };
 
       p.draw = () => {
         p.background("#fffbeb");
+
+        // 背景と円の間に描くことで、円が広がると装飾画像が覆われる
+        if (decorImg) {
+          const scale = Math.min(1, p.windowWidth / DECOR.fullScaleWidth);
+          const w = DECOR.width * scale;
+          const h = DECOR.height * scale;
+          p.image(
+            decorImg,
+            DECOR.left * scale,
+            p.windowHeight / 2 + DECOR.topFromCenter * scale,
+            w,
+            h,
+          );
+        }
 
         // 直径デフォルト値
         let diameter = parseInt(canvasDiameter);
@@ -65,11 +104,13 @@ document.fonts.ready.then(() => {
 
         // 1. フォントの設定（※文字幅を計算する前に必ず設定する必要があります）
         p.fill("#FFFFFF");
-        p.textFont("rocknroll-one");
+        p.textFont("ads-strong");
         p.textSize(54);
         p.textLeading(70); // 行間（お好みで調整してください）
 
         // 2. テキストを行ごとに分割する
+        //    言語切り替えで data-text が書き換わるため、毎フレーム読み直す
+        const canvasText = canvas.dataset.text;
         const lines = canvasText.split("\n");
 
         // 3. 一番長い行の幅（ピクセル数）を計算する

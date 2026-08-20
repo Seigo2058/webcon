@@ -19,6 +19,20 @@
   background-color: #90653a;
 }
 
+/* Figma: 右端の縦書きヒント（24px / 行送り36px / 白） */
+.bento-hint {
+  position: absolute;
+  top: 50%;
+  right: 138px;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--f2);
+  font-size: 24px;
+  line-height: 36px;
+  color: #fff;
+  pointer-events: none;
+}
+
 .bento-grid {
   height: 90%;
   width: auto;
@@ -195,14 +209,14 @@
 
 .description h5 {
   font-size: 20px;
-  font-family: var(--f1);
+  font-family: var(--f2);
   color: #482f14;
   padding: 16px 0;
 }
 
 .description h6 {
   font-size: 16px;
-  font-family: var(--f1);
+  font-family: var(--f2);
   padding-top: 16px;
 }
 

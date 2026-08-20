@@ -64,23 +64,24 @@ a {
 :root {
   --f1: rocknroll-one, sans-serif;
   --f2: toppan-bunkyu-midashi-go-std, sans-serif;
+  --f3: ads-strong, sans-serif;
   text-align: center;
 }
 
 h2 {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 40px;
   color: #fff;
 }
 
 h3 {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 28px;
   color: #fff;
 }
 
 h4 {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 24px;
   color: #fff;
 }
@@ -102,7 +103,7 @@ p {
 }
 
 body {
-  font-family: var(--f1);
+  font-family: var(--f2);
   font-size: 1rem;
   line-height: normal;
   background: var(--c-bg);
@@ -111,7 +112,7 @@ body {
 
 h1,
 h2 {
-  font-family: var(--f1);
+  font-family: var(--f2);
 }
 
 a {
@@ -161,20 +162,85 @@ body.no-scroll {
   position: relative;
   width: 100%;
   height: 100vh; /* 画面いっぱいの高さを確保 */
-  background-color: #f5f5f5;
+  background-color: var(--c-bg); /* Figma: #FFFBEB */
   overflow: hidden;
 }
 
+/* Figma: サイトタイトルはヘッダー左上（ADS-strong 16px / #373635）。
+   ハンバーガー(top20px・60px角)と天地中心を揃える */
 .title {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
+  top: 50px;
+  left: 127px;
+  transform: translateY(-50%);
   z-index: 2;
-  width: 100%;
+  font-family: var(--f3);
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1;
+  color: #373635;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Figma: 縦書きのキャッチコピー（ADS-strong 24px / #482e13） */
+.mv-catch {
+  position: absolute;
+  top: 16.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  margin: 0;
+  writing-mode: vertical-rl;
+  font-family: var(--f3);
+  /* 図面は画面高1001pxで24px。低い画面では比率を保って縮める
+     （縮めないとイラストのクマに文字が重なる） */
+  font-size: min(24px, 2.4vh);
+  line-height: min(50px, 5vh);
+  letter-spacing: min(10px, 1vh);
+  color: #482e13;
+  /* :root の text-align:center は縦書きだと「行の縦中央揃え」になり、
+     短い方の行（本当の姿。）が下がるため、行頭（上）で揃える */
+  text-align: start;
+}
+
+/* 英語では縦書きにせず横組みにする */
+html[lang=en] .mv-catch {
+  /* 英語は縦書きにせず、画面中央付近へ置く */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  writing-mode: horizontal-tb;
+  max-width: 12em;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+/* Figma: 画面下中央のスクロール誘導（ADS-strong 16px / 白 + 2x34pxの白線） */
+.mv-scroll {
+  position: absolute;
+  bottom: 2.6%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.mv-scroll__label {
+  font-family: var(--f3);
+  font-size: 16px;
+  line-height: 1;
+  color: #fff;
+}
+
+.mv-scroll__line {
+  width: 2px;
+  height: 34px;
+  background-color: #fff;
 }
 
 .bottom-image {
@@ -288,7 +354,7 @@ body.no-scroll {
 #item3 p {
   margin-top: 24px;
   color: #fff;
-  font-family: var(--f1);
+  font-family: var(--f2);
 }
 
 #item4 {
@@ -327,9 +393,20 @@ body.no-scroll {
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #d35228;
+  text-align: left;
+}
+
+/* Figma: カード群の上に置く見出し（32px / 白 / カードと左端を揃える） */
+.accordion-heading {
+  width: 90%;
+  margin-bottom: 16px;
+  font-family: var(--f1);
+  font-size: 32px;
+  color: #fff;
   text-align: left;
 }
 
@@ -446,6 +523,17 @@ body.no-scroll {
   padding: 10% 0 5% 0;
 }
 
+/* Figma: 対策セクションの見出しだけは RocknRoll One 指定のため据え置く */
+.measure h3 {
+  font-family: var(--f1);
+}
+
+/* Figma: この2つの見出しは ADS-strong 指定 */
+.text-wrapper4 h3,
+.child-intro-title h3 {
+  font-family: var(--f3);
+}
+
 .measure-contents {
   display: flex;
   justify-content: space-between;
@@ -457,6 +545,20 @@ body.no-scroll {
   position: relative;
   height: 100%;
   aspect-ratio: 393/589;
+}
+
+/* Figma: 道具イラストの下に添えるキャプション（16px / 白） */
+.tools-hint {
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  /* 図面は26pxだが、実装ではイラスト下の余白が40pxしかないため詰める */
+  margin-top: 8px;
+  font-family: var(--f1);
+  font-size: 16px;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 /* 個別のツール */
@@ -547,6 +649,21 @@ body.no-scroll {
   padding-bottom: 16px;
   text-align: left;
   line-height: 20px;
+}
+
+/* 英語は同じ内容でも行数が増えるため、メモ用紙に収まるよう少し詰める */
+html[lang=en] .memo-text-content h5 {
+  padding-bottom: 12px;
+}
+html[lang=en] .memo-text-content {
+  /* 英語の見出しは折り返しやすいので、行間を詰めておく */
+}
+html[lang=en] .memo-text-content h6 {
+  line-height: 1.3;
+}
+html[lang=en] .memo-text-content p {
+  padding-bottom: 8px;
+  line-height: 19px;
 }
 
 .memo-content img {
@@ -737,6 +854,12 @@ body.no-scroll {
   align-items: center;
   height: 150px;
   background-color: #9a9a9a;
+}
+
+/* Figma: フッターのタイトルも ADS-strong（サイズは現行を維持） */
+.footer-text p {
+  font-family: var(--f3);
+  color: #373635;
 }
 
 .child-title {
@@ -967,6 +1090,75 @@ body.no-scroll {
     padding-left: 40px;
   }
 }
+/* 言語切り替え（Figma: p-header__switch / 148x60）*/
+.lang-switch {
+  position: fixed;
+  top: 20px; /* ハンバーガー(60px角)と天地を揃える */
+  right: 100px; /* 画面右20px + ハンバーガー60px + 間隔20px */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 148px;
+  height: 60px;
+  /* Figmaは枠線の内側から余白8pxを取っているため、線の2pxを差し引く */
+  padding: 6px;
+  border: 2px solid #373635;
+  border-radius: 1000px;
+  background: transparent;
+  transition: border-color 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.lang-switch button {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  padding: 4px;
+  border: 0;
+  border-radius: 1000px;
+  background: transparent;
+  color: #373635;
+  font-family: var(--f2);
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.lang-switch button.is-active {
+  background-color: #373635;
+  color: #fff;
+}
+.lang-switch button:disabled {
+  cursor: progress;
+}
+.lang-switch {
+  /* 取得中は操作できないことを見た目でも示す */
+}
+.lang-switch.is-loading {
+  opacity: 0.6;
+}
+
+/* ナビゲーションを開いている間は、ハンバーガーに合わせて白へ反転させる */
+.header:has(.nav-fade.active) .lang-switch {
+  border-color: #fff;
+}
+.header:has(.nav-fade.active) .lang-switch button {
+  color: #fff;
+}
+.header:has(.nav-fade.active) .lang-switch button.is-active {
+  background-color: #fff;
+  color: #373635;
+}
+
+/* JSが参照するだけの要素。レイアウトに影響させない */
+.tool-descriptions[hidden] {
+  display: none !important;
+}
+
 /* Base Grid (PC) */
 .bento-intro {
   width: 100%;
@@ -985,6 +1177,20 @@ body.no-scroll {
   justify-content: center;
   align-items: center;
   background-color: #90653a;
+}
+
+/* Figma: 右端の縦書きヒント（24px / 行送り36px / 白） */
+.bento-hint {
+  position: absolute;
+  top: 50%;
+  right: 138px;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--f2);
+  font-size: 24px;
+  line-height: 36px;
+  color: #fff;
+  pointer-events: none;
 }
 
 .bento-grid {
@@ -1159,14 +1365,14 @@ body.no-scroll {
 
 .description h5 {
   font-size: 20px;
-  font-family: var(--f1);
+  font-family: var(--f2);
   color: #482f14;
   padding: 16px 0;
 }
 
 .description h6 {
   font-size: 16px;
-  font-family: var(--f1);
+  font-family: var(--f2);
   padding-top: 16px;
 }
 
